@@ -2,7 +2,7 @@
 authors = ["MJ PC Lab"]
 language = "zh-CN"
 multilingual = false
-title = "Web二进制流编程"
+title = "Web二进制媒体编程"
 
 [build]
 build-dir = "dist"
@@ -11,6 +11,6 @@ build-dir = "dist"
 levels = [0]
 
 [output.html]
-git-repository-url = "https://github.com/mjpclab/web-binary-and-stream-programming"
+git-repository-url = "https://github.com/mjpclab/web-binary-media-programming"
 print.enable = false
 playground.copyable = false

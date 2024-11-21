@@ -72,9 +72,15 @@ arr16; // [0, 0, 0]
 
 ### 通过已有的 ArrayBuffer 创建
 
+```javascript
+new TypedArray(buffer);
+new TypedArray(buffer, byteOffset);
+new TypedArray(buffer, byteOffset, length);
+```
+
 当通过已有的 ArrayBuffer 创建类型化数组时，构造函数不再单独创建新的 ArrayBuffer,而是将传入的 ArrayBuffer 作为底层缓冲区使用。可以通过一个 ArrayBuffer 构造多个不同的类型化数组，他们将共享相同的底层数组。
 
-还可以额外指定要创建的数组所使用的 ArrayBuffer 的起始位置和长度，这两个参数都是可选的。
+还可以额外指定要创建的数组所使用的 ArrayBuffer 的起始位置和长度（元素个数），这两个参数都是可选的。
 
 ```javascript
 const buffer = new ArrayBuffer(16);
@@ -88,6 +94,9 @@ u8.forEach((v, i) => {
 
 const u16 = new Uint16Array(buffer);
 u16[1].toString(16); // 302，buffer字节位置2、3值的小端序表示：0x0302
+
+const i16 = new Int16Array(buffer, 2, 4);
+[...i16].map((n) => n.toString(16)); //  ['302', '504', '706', '908']
 ```
 
 ### 通过迭代器创建
@@ -246,4 +255,13 @@ subList = list.subarray(2, 5);
 subList; // [3, 4, 5]
 subList.buffer === list.buffer; // true
 subList.byteOffset; // 8
+```
+
+如需要产生子数组的副本，即元素组和子数组不共享同一个 ArrayBuffer,可以换用`slice`方法：
+
+```javascript
+const list = new Int32Array([1, 2, 3, 4, 5, 6]);
+const copied = list.slice(2);
+copied; // [3, 4, 5, 6]
+copied.buffer === list.buffer; // false
 ```

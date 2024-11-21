@@ -67,7 +67,7 @@ arrI8; // [-1, 0 ]
 
 ```javascript
 const arr16 = new Int16Array(3);
-arr16; // [0, 0, 0 ]
+arr16; // [0, 0, 0]
 ```
 
 ### 通过已有的 ArrayBuffer 创建
@@ -123,6 +123,16 @@ const primes = [2n, 3n, 5n, 7n, 11n];
 BigUint64Array.of(...primes); // [2n, 3n, 5n, 7n, 11n]
 ```
 
+## 代表 ArrayBuffer 视图
+
+静态方法`ArrayBuffer.isView()`可以验证某个对象是不是 ArrayBuffer 的视图：
+
+```javascript
+ArrayBuffer.isView(new Int8Array(1)); // true
+ArrayBuffer.isView(new Float32Array(5)); // true
+ArrayBuffer.isView([]); //false
+```
+
 ## 通用属性
 
 ### 静态属性
@@ -167,5 +177,73 @@ bytes.byteOffset; // 2
 const u8 = new Uint8Array(2);
 u8[1] = 255;
 const u16 = new Uint16Array(u8.buffer);
-u16[0].toString(16); // ff00
+u16[0].toString(16); // ff00（小端序）
+```
+
+## 通用方法
+
+类型化数组有一些普通数组也有的通用方法，例如`forEach`、`find`、`indexOf`等，此处不再赘述。
+
+### `map()`返回同类型数组
+
+类型化数组的`map`方法在对现有数组元素执行映射逻辑后，返回新的相同类型的类型化数组：
+
+```javascript
+const u8 = new Uint8Array([1, 2, 3, 4, 5]);
+const mapped = u8.map((n) => n * 10);
+mapped; // [10, 20, 30, 40, 50]
+mapped instanceof Uint8Array; // true
+```
+
+### `set()`：从其它数组写入连续元素
+
+```javascript
+typedArray.set(sourceArray);
+typedArray.set(sourceArray, targetOffset);
+```
+
+其中`sourceArray`既可以是普通数组，也可以是类型化数组，可选的`targetOffset`指定写入目标数组`typedArray`的起始位置：
+
+```javascript
+const bytes = new Uint8Array(8);
+
+bytes.set([1, 2]);
+bytes; //  [1, 2, 0, 0, 0, 0, 0, 0]
+
+bytes.set([3, 4], 3);
+bytes; // [1, 2, 0, 3, 4, 0, 0, 0];
+
+const list = new Int16Array([7, 8]);
+bytes.set(list, 6);
+bytes; // [1, 2, 0, 3, 4, 0, 7, 8]
+```
+
+### `subarray()`：取子数组
+
+```javascript
+typedArray.subarray();
+typedArray.subarray(begin);
+typedArray.subarray(begin, end);
+```
+
+从`typedArray`取子数组，两个参数分别是开始位置和结束位置。新数组和原数组共享相同的 ArrayBuffer，但各自可以有不同的`byteOffset`。
+
+```javascript
+const list = new Int32Array([1, 2, 3, 4, 5, 6]);
+let subList;
+
+subList = list.subarray();
+subList; // [1, 2, 3, 4, 5, 6]
+subList.buffer === list.buffer; // true
+subList.byteOffset; // 0
+
+subList = list.subarray(2);
+subList; // [3, 4, 5, 6]
+subList.buffer === list.buffer; // true
+subList.byteOffset; // 8
+
+subList = list.subarray(2, 5);
+subList; // [3, 4, 5]
+subList.buffer === list.buffer; // true
+subList.byteOffset; // 8
 ```

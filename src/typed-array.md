@@ -72,6 +72,8 @@ arr16; // [0, 0, 0]
 
 ### 通过已有的 ArrayBuffer 创建
 
+语法：
+
 ```javascript
 new TypedArray(buffer);
 new TypedArray(buffer, byteOffset);
@@ -114,13 +116,29 @@ const u8 = new Uint8Array(threeNumbers());
 u8; // [10, 20, 30]
 ```
 
-### 使用`TypedArray.from()`通过可迭代对象创建
+### 使用`TypedArray.from()`通过可迭代对象或类数组创建
 
-大部分情况下，该方法与将普通数组或类型化数组传入构造函数效果相同，但该方法有一个特别的用法是可以分解字符串值，因为字符串也是可迭代对象。
+语法：
+
+```javascript
+TypedArray.from(list);
+TypedArray.from(list, mapFn);
+TypedArray.from(list, mapFn, thisArg);
+```
+
+如果只传入第一个参数，大部分情况下，该方法与将普通数组或类型化数组传入构造函数效果相同，但该方法有一个特别的用法是可以分解字符串值，因为字符串也是可迭代对象。
 
 ```javascript
 Uint8Array.from([1, 2, 3]); // [1, 2, 3]
 Uint16Array.from("123456"); // [1, 2, 3, 4, 5, 6]
+```
+
+可以在创建时同时指定第二个参数（map 函数）对输入数据做变换：
+
+```javascript
+const source = [1, 2, 3];
+const dest = Int16Array.from(source, (n) => n * n);
+dest; // [1, 4, 9]
 ```
 
 ### 使用`TypedArray.of()`通过枚举列表创建
@@ -134,7 +152,7 @@ BigUint64Array.of(...primes); // [2n, 3n, 5n, 7n, 11n]
 
 ## 代表 ArrayBuffer 视图
 
-静态方法`ArrayBuffer.isView()`可以验证某个对象是不是 ArrayBuffer 的视图：
+静态方法`ArrayBuffer.isView()`可以验证某个对象是不是 ArrayBuffer 的视图。语法：
 
 ```javascript
 ArrayBuffer.isView(new Int8Array(1)); // true
@@ -206,6 +224,8 @@ mapped instanceof Uint8Array; // true
 
 ### `set()`：从其它数组写入连续元素
 
+语法：
+
 ```javascript
 typedArray.set(sourceArray);
 typedArray.set(sourceArray, targetOffset);
@@ -228,6 +248,8 @@ bytes; // [1, 2, 0, 3, 4, 0, 7, 8]
 ```
 
 ### `subarray()`：取子数组
+
+语法：
 
 ```javascript
 typedArray.subarray();
@@ -257,7 +279,7 @@ subList.buffer === list.buffer; // true
 subList.byteOffset; // 8
 ```
 
-如需要产生子数组的副本，即元素组和子数组不共享同一个 ArrayBuffer,可以换用`slice`方法：
+如需要产生子数组的副本，即元素组和子数组不共享同一个 ArrayBuffer，可以换用`slice`方法：
 
 ```javascript
 const list = new Int32Array([1, 2, 3, 4, 5, 6]);

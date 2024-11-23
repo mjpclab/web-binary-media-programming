@@ -1,7 +1,9 @@
 # 目录
 
 - [前言](preface.md)
-- [ArrayBuffer](array-buffer.md)
-- [类型化数组](typed-array.md)
-- [Uint8ClampedArray](uint8-clamped-array.md)
-- [参考资料](references.md)
+- [ArrayBuffer和它的朋友们](array-buffer.md)
+  - [ArrayBuffer](array-buffer.md)
+  - [类型化数组](typed-array.md)
+  - [Uint8ClampedArray](uint8-clamped-array.md)
+  - [DataView](data-view.md)
+- [参考资料](reference.md)

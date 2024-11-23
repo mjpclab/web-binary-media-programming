@@ -82,7 +82,7 @@ new TypedArray(buffer, byteOffset, length);
 
 当通过已有的 ArrayBuffer 创建类型化数组时，构造函数不再单独创建新的 ArrayBuffer,而是将传入的 ArrayBuffer 作为底层缓冲区使用。可以通过一个 ArrayBuffer 构造多个不同的类型化数组，他们将共享相同的底层数组。
 
-还可以额外指定要创建的数组所使用的 ArrayBuffer 的起始位置和长度（元素个数），这两个参数都是可选的。
+还可以额外指定要创建的数组所使用的 ArrayBuffer 的起始位置（偏移量）和长度（元素个数），这两个参数都是可选的。
 
 ```javascript
 const buffer = new ArrayBuffer(16);
@@ -152,7 +152,7 @@ BigUint64Array.of(...primes); // [2n, 3n, 5n, 7n, 11n]
 
 ## 代表 ArrayBuffer 视图
 
-静态方法`ArrayBuffer.isView()`可以验证某个对象是不是 ArrayBuffer 的视图。语法：
+静态方法`ArrayBuffer.isView()`可以验证某个对象是不是 ArrayBuffer 的视图。由于类型化数组是ArrayBuffer的视图，所以会返回`true`。
 
 ```javascript
 ArrayBuffer.isView(new Int8Array(1)); // true
@@ -175,7 +175,7 @@ BigUint64Array.BYTES_PER_ELEMENT; // 8
 
 ### 实例属性
 
-`length`指示数组元素长度（个数），而`byteLength`指示数组的字节长度：
+`length`指示数组长度（元素个数），而`byteLength`指示数组的字节长度：
 
 ```javascript
 const u32 = new Uint32Array(10);

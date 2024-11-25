@@ -1,6 +1,6 @@
 # ArrayBuffer
 
-ArrayBuffer 代表内存底层二进制数据缓冲区，它不关心数据应该被如何解读，因为这是由上层视图（如[类型化数组](typed-array.md)或数据视图）负责的。
+ArrayBuffer 代表内存底层二进制数据缓冲区，它不关心数据应该被如何解读，因为这是由上层视图（如[类型化数组](typed-array.md)或[DataView](data-view.md)）负责的。
 
 ## 创建ArrayBuffer
 

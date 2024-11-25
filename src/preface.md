@@ -8,4 +8,8 @@
 
 ## 阅读本书的前提条件
 
-本书并非面向初学者，本书假设读者掌握了现代 JavaScript 标准：ECMAScript 6（ES6）。
+本书并非面向初学者，本书假设读者已经掌握了：
+
+- ECMAScript 6（ES6）
+- DOM API
+- fetch API

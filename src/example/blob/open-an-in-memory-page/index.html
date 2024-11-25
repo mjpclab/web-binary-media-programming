@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Open an in-memory page</title>
+  </head>
+  <body>
+    <p>
+      <a target="_blank" id="link">open dynamic page</a>
+    </p>
+    <script>
+      const blob = new Blob(
+        [
+          `
+<html>
+  <head><title>Dynamic page</title></head>
+  <body><p>This is a dynamically generated page</p></body>
+</html>
+        `,
+        ],
+        { type: "text/html" }
+      );
+      const url = URL.createObjectURL(blob);
+      document.getElementById("link").href = url;
+    </script>
+  </body>
+</html>

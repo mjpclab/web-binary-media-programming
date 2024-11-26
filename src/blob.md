@@ -56,3 +56,40 @@ document.getElementById("link").href = url;
 blob.size; // 118
 blob.type; // text/html'
 ```
+
+## Blob 方法
+
+### `arrayBuffer()`：转化为ArrayBuffer
+
+实例方法`arrayBuffer()`返回`Promise<ArrayBuffer>`，通过此方法可将Blob转化为ArrayBuffer。
+
+### `text()`：转化为string
+
+实例方法`text()`返回`Promise<string>`，通过此方法可将Blob转化为string，Blob中的二进制数据按UTF-8编码格式解析。
+
+### `slice()`：取 Blob 片段
+
+`slice()`方法提取现有 Blob 中的片段，并创建一个新的 Blob 对象。
+
+语法：
+
+```javascript
+blob.slice();
+blob.slice(start);
+blob.slice(start, end);
+blob.slice(start, end, contentType);
+```
+
+如果指定了`contentType`参数，可以创建一个和原Blob `type`类型不同的Blob。
+
+```javascript
+const chars = new Uint8Array([0x41, 0x42, 0x43, 0x44, 0x45, 0x46]);
+const b1 = new Blob([chars], { type: "text/plain" });
+b1.size; // 6
+
+const b2 = b1.slice(2, 6);
+b2.size; // 4
+b2.text().then((text) => {
+  console.log(text); // CDEF
+});
+```

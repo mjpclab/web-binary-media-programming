@@ -8,7 +8,7 @@
   - [DataView](data-view.md)
 - [Blob和File](blob-and-file.md)
   - [Blob](blob.md)
-  - [File]()
+  - [File](file.md)
   - [FileReader]()
   - [FileReaderSync]()
   - [FileList]()

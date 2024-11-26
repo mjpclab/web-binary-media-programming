@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>display image</title>
+  </head>
+  <body>
+    <h1>select an image file to preview</h1>
+    <input type="file" accept="image/*" id="imagefile" />
+    <dl>
+      <dt>Filename</dt>
+      <dd id="filename"></dd>
+
+      <dt>Last modified</dt>
+      <dd id="lastmodified"></dd>
+
+      <dt>preview</dt>
+      <dd><img id="preview" /></dd>
+    </dl>
+
+    <script>
+      imagefile.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        filename.textContent = file.name;
+        lastmodified.textContent = new Date(file.lastModified);
+        preview.src = URL.createObjectURL(file);
+      });
+    </script>
+  </body>
+</html>

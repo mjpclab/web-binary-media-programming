@@ -31,7 +31,7 @@ File 接口继承自 Blob，并扩展了一些属性，使其表现得更像文�
 然后订阅文件选择框的`change`事件，当用户选择文件后，获取其中的 File 对象实例，并读取其上的信息：
 
 ```javascript
-imagefile.addEventListener("change", (e) => {
+imagefile.addEventListener("change", e => {
   const file = e.target.files[0];
   if (!file) return;
 

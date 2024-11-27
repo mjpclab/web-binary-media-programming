@@ -91,14 +91,14 @@ const u8 = new Uint8Array(buffer);
 u8.forEach((v, i) => {
   u8[i] = i;
 });
-[...u8].map((v) => v.toString(16));
+[...u8].map(v => v.toString(16));
 // ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
 
 const u16 = new Uint16Array(buffer);
 u16[1].toString(16); // 302，buffer字节位置2、3值的小端序表示：0x0302
 
 const i16 = new Int16Array(buffer, 2, 4);
-[...i16].map((n) => n.toString(16)); //  ['302', '504', '706', '908']
+[...i16].map(n => n.toString(16)); //  ['302', '504', '706', '908']
 ```
 
 ### 通过迭代器创建
@@ -137,7 +137,7 @@ Uint16Array.from("123456"); // [1, 2, 3, 4, 5, 6]
 
 ```javascript
 const source = [1, 2, 3];
-const dest = Int16Array.from(source, (n) => n * n);
+const dest = Int16Array.from(source, n => n * n);
 dest; // [1, 4, 9]
 ```
 
@@ -152,7 +152,7 @@ BigUint64Array.of(...primes); // [2n, 3n, 5n, 7n, 11n]
 
 ## 代表 ArrayBuffer 视图
 
-静态方法`ArrayBuffer.isView()`可以验证某个对象是不是 ArrayBuffer 的视图。由于类型化数组是ArrayBuffer的视图，所以会返回`true`。
+静态方法`ArrayBuffer.isView()`可以验证某个对象是不是 ArrayBuffer 的视图。由于类型化数组是 ArrayBuffer 的视图，所以会返回`true`。
 
 ```javascript
 ArrayBuffer.isView(new Int8Array(1)); // true
@@ -217,7 +217,7 @@ u16[0].toString(16); // ff00（小端序）
 
 ```javascript
 const u8 = new Uint8Array([1, 2, 3, 4, 5]);
-const mapped = u8.map((n) => n * 10);
+const mapped = u8.map(n => n * 10);
 mapped; // [10, 20, 30, 40, 50]
 mapped instanceof Uint8Array; // true
 ```

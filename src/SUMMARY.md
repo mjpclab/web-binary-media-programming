@@ -1,12 +1,12 @@
 # 目录
 
 - [前言](preface.md)
-- [ArrayBuffer和它的朋友们](array-buffer-and-its-friends.md)
+- [ArrayBuffer 和它的朋友们](array-buffer-and-its-friends.md)
   - [ArrayBuffer](array-buffer.md)
   - [类型化数组](typed-array.md)
   - [Uint8ClampedArray](uint8-clamped-array.md)
   - [DataView](data-view.md)
-- [Blob和File](blob-and-file.md)
+- [Blob 和 File](blob-and-file.md)
   - [Blob](blob.md)
   - [File](file.md)
   - [FileReader]()

@@ -2,7 +2,7 @@
 
 ArrayBuffer 代表内存底层二进制数据缓冲区，它不关心数据应该被如何解读，因为这是由上层视图（如[类型化数组](typed-array.md)或[DataView](data-view.md)）负责的。
 
-## 创建ArrayBuffer
+## 创建 ArrayBuffer
 
 ArrayBuffer 实例拥有一个初始长度，一个可选的最大长度。
 
@@ -65,4 +65,4 @@ const slice2 = buffer.slice(2, 6);
 slice2.byteLength; // 4
 ```
 
-两个位置参数都可以是负数，代表从ArrayBuffer末尾开始倒数的位置。
+两个位置参数都可以是负数，代表从 ArrayBuffer 末尾开始倒数的位置。

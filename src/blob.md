@@ -59,13 +59,13 @@ blob.type; // text/html'
 
 ## Blob 方法
 
-### `arrayBuffer()`：转化为ArrayBuffer
+### `arrayBuffer()`：转化为 ArrayBuffer
 
-实例方法`arrayBuffer()`返回`Promise<ArrayBuffer>`，通过此方法可将Blob转化为ArrayBuffer。
+实例方法`arrayBuffer()`返回`Promise<ArrayBuffer>`，通过此方法可将 Blob 转化为 ArrayBuffer。
 
-### `text()`：转化为string
+### `text()`：转化为 string
 
-实例方法`text()`返回`Promise<string>`，通过此方法可将Blob转化为string，Blob中的二进制数据按UTF-8编码格式解析。
+实例方法`text()`返回`Promise<string>`，通过此方法可将 Blob 转化为 string，Blob 中的二进制数据按 UTF-8 编码格式解析。
 
 ### `slice()`：取 Blob 片段
 
@@ -80,7 +80,7 @@ blob.slice(start, end);
 blob.slice(start, end, contentType);
 ```
 
-如果指定了`contentType`参数，可以创建一个和原Blob `type`类型不同的Blob。
+如果指定了`contentType`参数，可以创建一个和原 Blob `type`类型不同的 Blob。
 
 ```javascript
 const chars = new Uint8Array([0x41, 0x42, 0x43, 0x44, 0x45, 0x46]);
@@ -89,7 +89,7 @@ b1.size; // 6
 
 const b2 = b1.slice(2, 6);
 b2.size; // 4
-b2.text().then((text) => {
+b2.text().then(text => {
   console.log(text); // CDEF
 });
 ```

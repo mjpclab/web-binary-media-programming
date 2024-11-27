@@ -10,7 +10,7 @@
   - [Blob](blob.md)
   - [File](file.md)
   - [FileList](file-list.md)
-  - [FileReader]()
+  - [FileReader](file-reader.md)
   - [FileReaderSync]()
   - [Object URL]()
 - [参考资料](reference.md)

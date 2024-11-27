@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FileList demo</title>
+  </head>
+  <body>
+    <h1>Select files or drop files</h1>
+    <input id="fileinput" type="file" multiple />
+    <pre id="names"></pre>
+    <script>
+      const showFileNames = files => {
+        names.textContent = "";
+        for (let i = 0; i < files.length; i++) {
+          names.textContent += files[i].name + "\n";
+        }
+      };
+
+      fileinput.addEventListener("change", e => {
+        showFileNames(e.target.files);
+      });
+
+      document.addEventListener("dragover", e => e.preventDefault());
+      document.addEventListener("drop", e => {
+        e.preventDefault();
+        showFileNames(e.dataTransfer.files);
+      });
+    </script>
+  </body>
+</html>

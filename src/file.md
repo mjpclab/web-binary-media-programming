@@ -8,6 +8,21 @@ File 接口继承自 Blob，并扩展了一些属性，使其表现得更像文�
 
 `lastModified`指示文件最后修改时间，以 UNIX 纪元（1970 年 1 月 1 日午夜）以来经过的毫秒数表示。
 
+## 创建 File
+
+语法：
+
+```javascript
+new File(blobParts, filename);
+new File(blobParts, filename, options);
+```
+
+其中`blobParts`用法同 Blob 构造函数。
+
+新增的`filename`参数用于指定`File`对象的`name`属性。
+
+`options`对象除了可指定 Blob 中已支持的`type`和`endings`属性，还额外支持指定`lastModified`属性。
+
 ## 示例：显示本地图片信息
 
 我们将构建一个 HTML 页面，其中有一个文件表单域，当用户选择一张图片文件后，在页面上显示出其文件名、修改日期和图片预览。

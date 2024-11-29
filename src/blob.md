@@ -11,7 +11,7 @@ new Blob(blobParts, options);
 
 `blobParts`是一个可迭代对象，每个元素都可以是 ArrayBuffer、类型化数组、DataView、Blob、File 或 string 中任意一种，他们被连接起来作为 Blob 的底层数据来源。
 
-`options`对象可指定属性`type`，用于表示 Blob 二进制数据的 MIME 类型。
+`options`对象用于指定可选属性：`type`用于表示 Blob 二进制数据的 MIME 类型；如果数据来源是文本，`endings`决定如何解读换行字符，设置为`transparent`保持原样，设置为`native`自动转化为系统原生换行符。
 
 ## 示例：构建一个动态 HTML 页面
 
@@ -66,6 +66,20 @@ blob.type; // text/html'
 ### `text()`：转化为 string
 
 实例方法`text()`返回`Promise<string>`，通过此方法可将 Blob 转化为 string，Blob 中的二进制数据按 UTF-8 编码格式解析。
+
+我们顺便来测试下构造函数第二个参数的`endings`属性，在Linux下，原生换行符为`\n`。
+
+```javascript
+const sources = ["foo\r\nbar"];
+new Blob(sources, { endings: "transparent" }).text().then(txt => {
+  console.log("transparent mdoe:", JSON.stringify(txt));
+  // transparent mdoe: "foo\r\nbar"
+});
+new Blob(sources, { endings: "native" }).text().then(txt => {
+  console.log("native mode:", JSON.stringify(txt));
+  // native mode: "foo\nbar"
+});
+```
 
 ### `slice()`：取 Blob 片段
 

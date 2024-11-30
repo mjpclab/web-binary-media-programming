@@ -42,33 +42,9 @@ Uint16Array(length=4)     |  00 01  |  02 03  |  04 05  |  06 07  |
 
 ## 创建类型化数组
 
-### 通过普通数组初始化
+可以传递已有的 ArrayBuffer 给类型化数组的构造函数，以使该类型化数组使用传入的 ArrayBuffer 作为底层数据。
 
-可通过非类型化数组的值来初始化类型化数组，超出元素长度的值会被截断，构造函数会自动创建对应的底层 ArrayBuffer：
-
-```javascript
-const arrI8 = new Int8Array([0, 1, 2, 3, 32767, 32768]);
-arrI8; // [0, 1, 2, 3, -1, 0]
-```
-
-### 通过已有的类型化数组创建新的类型化数组
-
-通过已有的类型化数组创建新的类型化数组，效果与通过普通数组初始化相同。
-
-```javascript
-const arrU16 = new Uint16Array([65535, 65536]);
-const arrI8 = new Int8Array(arrU16);
-arrI8; // [-1, 0 ]
-```
-
-### 通过指定数组长度创建
-
-可以指定数组的元素个数，他们将被初始化为`0`：
-
-```javascript
-const arr16 = new Int16Array(3);
-arr16; // [0, 0, 0]
-```
+除此之外，通常在创建类型化数组的同时创建新的 ArrayBuffer，作为底层数据使用。
 
 ### 通过已有的 ArrayBuffer 创建
 
@@ -80,7 +56,7 @@ new TypedArray(buffer, byteOffset);
 new TypedArray(buffer, byteOffset, length);
 ```
 
-当通过已有的 ArrayBuffer 创建类型化数组时，构造函数不再单独创建新的 ArrayBuffer,而是将传入的 ArrayBuffer 作为底层缓冲区使用。可以通过一个 ArrayBuffer 构造多个不同的类型化数组，他们将共享相同的底层数组。
+当通过已有的 ArrayBuffer 创建类型化数组时，构造函数不再单独创建新的 ArrayBuffer，而是将传入的 ArrayBuffer 作为底层缓冲区使用。可以通过一个 ArrayBuffer 构造多个不同的类型化数组，他们将共享相同的底层数组。
 
 还可以额外指定要创建的数组所使用的 ArrayBuffer 的起始位置（偏移量）和长度（元素个数），这两个参数都是可选的。
 
@@ -95,10 +71,40 @@ u8.forEach((v, i) => {
 // ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
 
 const u16 = new Uint16Array(buffer);
-u16[1].toString(16); // 302，buffer字节位置2、3值的小端序表示：0x0302
+[...u16].map(v => v.toString(16).padStart(4, "0"));
+// 小端序架构输出：['0100', '0302', '0504', '0706', '0908', '0b0a', '0d0c', '0f0e']
 
 const i16 = new Int16Array(buffer, 2, 4);
-[...i16].map(n => n.toString(16)); //  ['302', '504', '706', '908']
+[...i16].map(v => v.toString(16).padStart(4, "0"));
+// 小端序架构输出：['0302', '0504', '0706', '0908']
+```
+
+### 通过普通数组初始化
+
+可通过非类型化数组的值来初始化类型化数组，超出元素长度的值会被截断，构造函数会自动创建对应的底层 ArrayBuffer：
+
+```javascript
+const arrI8 = new Int8Array([0, 1, 2, 3, 32767, 32768]);
+arrI8; // [0, 1, 2, 3, -1, 0]
+```
+
+### 通过已有的类型化数组创建新的类型化数组
+
+通过已有的类型化数组创建新的类型化数组，效果与通过普通数组初始化相同，即按元素复制值而不是按字节数据复制。
+
+```javascript
+const arrU16 = new Uint16Array([65535, 65536]);
+const arrI8 = new Int8Array(arrU16);
+arrI8; // [-1, 0 ]
+```
+
+### 通过指定数组长度创建
+
+可以指定数组的元素个数，他们将被初始化为`0`：
+
+```javascript
+const arr16 = new Int16Array(3);
+arr16; // [0, 0, 0]
 ```
 
 ### 通过迭代器创建

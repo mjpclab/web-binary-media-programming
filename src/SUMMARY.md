@@ -11,6 +11,5 @@
   - [File](file.md)
   - [FileList](file-list.md)
   - [FileReader](file-reader.md)
-  - [FileReaderSync]()
-  - [Object URL]()
+  - [FileReaderSync](file-reader-sync.md)
 - [参考资料](reference.md)

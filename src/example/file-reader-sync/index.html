@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FileReaderSync</title>
+  </head>
+  <body>
+    <script>
+      const worker = new Worker("worker.js");
+      worker.postMessage(new Blob(["hello world"]));
+      worker.addEventListener("message", e => {
+        console.log(`got message from worker: ${e.data}`);
+      });
+    </script>
+  </body>
+</html>

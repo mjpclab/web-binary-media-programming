@@ -1,6 +1,6 @@
 # FileReaderSync
 
-`FileReaderSync`是`FileReader`的同步模式版本，在读取过程中不会触发状态和进度事件，而是阻塞当前进程，直到读取完毕，返回读取到的值，在出错时直接抛出错误。由于 FileReaderSync 读取数据时会阻塞进程，因而只能在 Worker（非 Service Worker） 中使用。
+`FileReaderSync`是`FileReader`的同步模式版本，它没有状态和进度事件，而是在读取数据时阻塞当前进程直到完成，返回读取到的值，在出错时直接抛出错误。由于 FileReaderSync 读取数据时会阻塞进程，因而只能在 Worker（非 Service Worker） 中使用。
 
 `FileReaderSync`读取数据的方法会同步地返回所请求的数据：
 

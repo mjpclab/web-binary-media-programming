@@ -13,4 +13,5 @@
   - [FileReader](file-reader.md)
   - [FileReaderSync](file-reader-sync.md)
   - [Object URL](object-url.md)
+- [Canvas 2D 和它的朋友们](canvas-2d-and-its-friends.md)
 - [参考资料](reference.md)

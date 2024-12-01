@@ -7,5 +7,8 @@
 - [File - MDN](https://developer.mozilla.org/en-US/docs/Web/API/File)
 - [FileList - MDN](https://developer.mozilla.org/en-US/docs/Web/API/FileList)
 - [FileReader - MDN](https://developer.mozilla.org/en-US/docs/Web/API/FileReader)
+- [HTMLCanvasElement - MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement)
+- [CanvasRenderingContext2D - MDN](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
+- [OffscreenCanvas](https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas)
 - [The Modern JavaScript Tutorial](https://javascript.info/)
 - [ArrayBuffer - ECMAScript 6 入门，阮一峰](https://es6.ruanyifeng.com/#docs/arraybuffer)

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Image converter</title>
+  </head>
+  <body>
+    <input id="fileinput" type="file" accept="image/*" />
+    <img id="preview" />
+    <section id="action" style="display: none">
+      <select id="imagetype">
+        <option value="image/png">png</option>
+        <option value="image/webp">webp</option>
+        <option value="image/jpeg">jpeg</option>
+      </select>
+      <input
+        id="imagequality"
+        type="number"
+        min="0"
+        max="1"
+        step="0.05"
+        value="0.9"
+        style="display: none"
+      />
+      <a id="download" download>Download</a>
+    </section>
+    <script src="index.js"></script>
+  </body>
+</html>

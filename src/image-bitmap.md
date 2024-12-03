@@ -25,10 +25,71 @@ createImageBitmap(image, sx, sy, sw, sh, options);
 
 之后可提供 4 个参数，以从源图像裁切，分别是裁切起始点的 x、y 坐标和长宽（可以为负数，表示反方向框选）。
 
-`options`对象上可以设置额外的选项。如要对图像进行缩放，`resizeWidth`设置输出图像的宽度，`resizeHeight`设置输出图像的高度，`resizeQuality`设置缩放质量（`pixelated`、`low`、`medium`或`high`）。
+`options`对象上可以设置额外的选项。如要对图像进行缩放，`resizeWidth`设置输出图像的宽度，`resizeHeight`设置输出图像的高度，`resizeQuality`设置缩放质量（`pixelated`、`low`、`medium`或`high`）；`imageOrientation`可根据原始图像的EXIF信息调整翻转，可设置为`from-image`、`flipY`或`none`。
 
 ## 属性和方法
 
 ImageBitmap 的`width`和`height`属性用于获取图像（缩放后）的宽和高，它们都是只读的。
 
 当 ImageBitmap 不再使用时，可调用`close()`方法释放资源。
+
+## 示例：裁剪并缩放图片
+
+我们将演示如何裁剪并缩放图片。例子简单地将用户选择的图片裁剪出正中心部分，长宽为原始图片的一半，然后再重新缩放到原始图片的大小。
+
+先准备必要的 HTML 标签：
+
+```html
+<input id="fileinput" type="file" accept="image/*" />
+<img id="preview" />
+<a id="download" download>Download</a>
+```
+
+当用户选择了图片文件，触发裁剪和缩放流程：
+
+```javascript
+fileinput.addEventListener("change", e => {
+  const file = e.target.files[0];
+  if (file) {
+    onFileUpdate(file);
+  }
+});
+```
+
+具体的裁剪和缩放处理实现在`onFileUpdate(file)`中：
+
+```javascript
+const onFileUpdate = async file => {
+  let bitmap = await createImageBitmap(file);
+  const { width, height } = bitmap;
+  bitmap = await createImageBitmap(
+    bitmap,
+    width / 4,
+    height / 4,
+    width / 2,
+    height / 2,
+    {
+      resizeWidth: width,
+      resizeHeight: height,
+      resizeQuality: "medium",
+    }
+  );
+
+  const canvas = document.createElement("canvas");
+  canvas.width = bitmap.width;
+  canvas.height = bitmap.height;
+  const ctx = canvas.getContext("2d");
+  ctx.drawImage(bitmap, 0, 0);
+  canvas.toBlob(blob => {
+    const blobUrl = URL.createObjectURL(blob);
+    preview.src = blobUrl;
+    download.href = blobUrl;
+  });
+};
+```
+
+首先通过`file`对象，它创建出初始的`ImageBitmap`对象，有了它就可以得知原始图片的尺寸，我们将其保存的`width`和`height`变量中。
+
+接着我们根据初始 ImageBitmap 对象创建新的 ImageBitmap，其相对于初始对象的裁剪起点为`width/4`和`height/4`，而裁剪长度为`width/2`和`height/2`，刚好是初始图像正中间部分，大小为原先的一半。在选项对象中，我们又通过`resizeWidth`和`resizeHeight`指定缩放后的大小为原始图像的大小。
+
+为了能显示并下载裁剪后的图片，我们需要将 ImageBitmap 转换成指向 Blob 的 Object URL，而要达到此目的，又需要先把 ImageBitmap 绘制到 canvas 元素上，然后通过 HTMLCanvasElement 的方法转换成 Blob。

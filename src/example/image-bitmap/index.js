@@ -2,14 +2,18 @@
 
 fileinput.addEventListener("change", e => {
   const file = e.target.files[0];
-  onFileUpdate(file);
+  if (file) {
+    onFileUpdate(file);
+  }
 });
 
 document.addEventListener("dragover", e => e.preventDefault());
 document.addEventListener("drop", e => {
   e.preventDefault();
   const file = e.dataTransfer.files?.[0];
-  onFileUpdate(file);
+  if (file) {
+    onFileUpdate(file);
+  }
 });
 
 const onFileUpdate = async file => {

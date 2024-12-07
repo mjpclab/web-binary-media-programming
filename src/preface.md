@@ -10,6 +10,6 @@
 
 本书并非面向初学者，本书假设读者已经掌握了：
 
-- ECMAScript 6（ES6）
+- ECMAScript 6（ES6）语法
 - DOM API
 - fetch API

@@ -1,6 +1,6 @@
 # ImageBitmap
 
-`ImageBitmap`代表图像的位图信息，用于在 canvas 上低延迟地绘制其图像。
+`ImageBitmap`代表图像的位图信息，用于在 canvas 上低延迟地绘制其图像（例如`Context.drawImage(imageBitmap, ...)`）。
 
 ## 创建 ImageBitmap
 
@@ -23,9 +23,9 @@ createImageBitmap(image, sx, sy, sw, sh, options);
 - ImageData
 - ImageBitmap
 
-之后可提供 4 个参数，以从源图像裁切，分别是裁切起始点的 x、y 坐标和长宽（可以为负数，表示反方向框选）。
+之后可提供 4 个参数，以从源图像裁切，分别是裁切起始点的 x、y 坐标和宽高（可以为负数，表示反方向框选）。
 
-`options`对象上可以设置额外的选项。如要对图像进行缩放，`resizeWidth`设置输出图像的宽度，`resizeHeight`设置输出图像的高度，`resizeQuality`设置缩放质量（`pixelated`、`low`、`medium`或`high`）；`imageOrientation`可根据原始图像的EXIF信息调整翻转，可设置为`from-image`、`flipY`或`none`。
+`options`对象上可以设置额外的选项。如要对图像进行缩放，`resizeWidth`设置输出图像的宽度，`resizeHeight`设置输出图像的高度，`resizeQuality`设置缩放质量（`pixelated`、`low`、`medium`或`high`）；`imageOrientation`可根据原始图像的 EXIF 信息调整翻转，可设置为`from-image`、`flipY`或`none`。
 
 ## 属性和方法
 
@@ -35,7 +35,7 @@ ImageBitmap 的`width`和`height`属性用于获取图像（缩放后）的宽�
 
 ## 示例：裁剪并缩放图片
 
-我们将演示如何裁剪并缩放图片。例子简单地将用户选择的图片裁剪出正中心部分，长宽为原始图片的一半，然后再重新缩放到原始图片的大小。
+我们将演示如何裁剪并缩放图片。例子简单地将用户选择的图片裁剪出正中心部分，宽高为原始图片的一半，然后再重新缩放到原始图片的大小。
 
 先准备必要的 HTML 标签：
 

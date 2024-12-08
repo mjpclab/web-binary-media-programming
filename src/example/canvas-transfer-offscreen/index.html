@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas transfer to OffscreenCanvas</title>
+  </head>
+  <body>
+    <canvas width="100" height="100"></canvas>
+    <script>
+      const canvas = document.querySelector("canvas");
+      const osCanvas = canvas.transferControlToOffscreen();
+      const worker = new Worker("worker.js");
+      worker.postMessage({ canvas: osCanvas }, [osCanvas]);
+    </script>
+  </body>
+</html>

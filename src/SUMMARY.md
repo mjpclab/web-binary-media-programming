@@ -13,6 +13,7 @@
   - [FileReader](file-reader.md)
   - [FileReaderSync](file-reader-sync.md)
   - [Object URL](object-url.md)
+  - [FormData](form-data.md)
 - [XMLHttpRequest 二进制操作](xhr-binary-operation.md)
   - [二进制响应](xhr-binary-response.md)
   - [上传文件](xhr-upload-files.md)

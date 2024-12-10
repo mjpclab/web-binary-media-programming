@@ -7,6 +7,7 @@
 - [File - MDN](https://developer.mozilla.org/en-US/docs/Web/API/File)
 - [FileList - MDN](https://developer.mozilla.org/en-US/docs/Web/API/FileList)
 - [FileReader - MDN](https://developer.mozilla.org/en-US/docs/Web/API/FileReader)
+- [FormData - MDN](https://developer.mozilla.org/en-US/docs/Web/API/FormData)
 - [HTMLCanvasElement - MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement)
 - [CanvasRenderingContext2D - MDN](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 - [OffscreenCanvas](https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas)

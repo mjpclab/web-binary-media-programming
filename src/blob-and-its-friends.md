@@ -7,3 +7,5 @@
 `FileList`是类数组对象，表示一组`File`的集合。
 
 `FileReader`提供了用可编程的方式获取`Blob`内容的途径。
+
+`FormData`提供了上传文件时需要提供的`Blob`数据和额外字段信息。

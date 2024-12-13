@@ -1,8 +1,11 @@
 # XMLHttpRequest 二进制响应
 
-为了能将服务器端响应当作二进制缓冲区，并在之后加以利用，`XMLHttpRequest`对象增加了`responseType`属性，用于指定响应体数据应该以何种形式存在。
+为了能将服务器端响应当作二进制缓冲区，并在之后加以利用，`XMLHttpRequest`对象增加了`responseType`属性，用于指定表示响应体数据的`response`属性应该以何种类型存在。
 
-与二进制数据有关的`responseType`取值有`arraybuffer`和`blob`两种。
+与二进制数据有关的`responseType`取值有：
+
+- `arraybuffer`：以 ArrayBuffer 对象的形式表示返回的数据
+- `blob`：以 Blob 对象的形式表示返回的数据
 
 ```javascript
 const xhr = new XMLHttpRequest();

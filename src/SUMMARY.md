@@ -23,4 +23,5 @@
 - [Canvas 2D 和它的朋友们](canvas-2d-and-its-friends.md)
   - [Canvas 及其 Context](canvas-and-its-context.md)
   - [ImageBitmap](image-bitmap.md)
+  - [ImageData](image-data.md)
 - [参考资料](reference.md)

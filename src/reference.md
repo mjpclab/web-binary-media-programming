@@ -12,5 +12,6 @@
 - [CanvasRenderingContext2D - MDN](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 - [OffscreenCanvas](https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas)
 - [ImageBitmap - MDN](https://developer.mozilla.org/en-US/docs/Web/API/ImageBitmap)
+- [ImageData - MDN](https://developer.mozilla.org/en-US/docs/Web/API/ImageData)
 - [The Modern JavaScript Tutorial](https://javascript.info/)
 - [ArrayBuffer - ECMAScript 6 入门，阮一峰](https://es6.ruanyifeng.com/#docs/arraybuffer)

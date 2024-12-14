@@ -1,6 +1,8 @@
 # 上传文件
 
-为了使用 Fetch API 上传文件，我们需要把构建好的 FormData 数据传递给 fetch API，它将使请求以`multipart/form-data`形式编码，以便将文件上传到服务器。。
+## 表单模式上传
+
+当我们把构建好的 FormData 数据传递给 fetch API，它将使请求以`multipart/form-data`形式编码，以便将文件上传到服务器，效果与通过表单上传文件相同。
 
 我们先启动[GHFS](https://github.com/mjpclab/go-http-file-server)服务器并启用上传功能，也可以使用其它支持`multipart/form-data`文件上传的 Web 服务器。
 
@@ -8,7 +10,7 @@
 ghfs -l 8080 -r /tmp/ --upload / --cors /
 ```
 
-## 以 URL 的形式使用 Fetch
+### 以 URL 的形式使用 Fetch
 
 如以`fetch(url, options)`的形式使用 fetch，需要将 FormData 对象赋值到`options`选项对象的`body`属性上。
 
@@ -26,7 +28,7 @@ if (response.ok) {
 }
 ```
 
-## 以 Request 对象的形式使用 Fetch
+### 以 Request 对象的形式使用 Fetch
 
 也可以先构造 Request 对象，然后传递给`fetch()`函数。构造 Request 对象时，传递 FormData 对象到选项对象的`body`属性上。
 
@@ -46,7 +48,7 @@ if (response.ok) {
 }
 ```
 
-### 读取 Request 对象数据
+#### 读取 Request 对象数据
 
 构造了 Request 对象后，可以读取其中的数据，内容为 HTTP 请求体（Request Body）。读取 Request 对象的操作一般较为少见。
 
@@ -83,3 +85,16 @@ await r1.text(); // throws: body stream already read
 const r2 = request.clone();
 await r2.text();
 ```
+
+## PUT 方法上传
+
+一些服务器还实现了通过`PUT`方法上传单个文件的方法，只需将代表原始文件内容的 Blob 对象作为请求体发送给服务器即可，而提交 URL 通常也是之后获取已上传内容的 URL：
+
+```javascript
+const response = await fetch("http://localhost/upload/filename", {
+  method: "PUT",
+  body: new Blob(["text content"], { type: "text/plain" }),
+});
+```
+
+以上示例仅用于展示可用 Blob 作为上传时的请求体，实际上传文本内容时，也可以直接将 string 作为`body`发送。

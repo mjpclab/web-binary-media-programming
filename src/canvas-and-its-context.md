@@ -179,3 +179,81 @@ convertToBlob([options]);
 ### `transferToImageBitmap()`转出到 ImageBitmap
 
 `transferToImageBitmap()`将当前 OffscreenCanvas 图像转出到 ImageBitmap 对象，然后创建新的空白画布用于后续绘图。
+
+## 示例：图像格式转换
+
+本示例接受用户选择的图片文件，然后按照用户选择的目标格式进行转换，并提供下载。其最核心的代码便是 Canvas 所提供的将图像转化为 Blob 的方法。
+
+先准备一个 HTML 页面，除了提供选择文件所用的输入框，还有显示原始图像的`img`标签，以及控制转化输出选项和下载链接的容器元素，默认情况下不显示出来：
+
+```html
+<input id="fileinput" type="file" accept="image/*" />
+<img id="preview" />
+<section id="action" style="display: none">
+  <select id="imagetype">
+    <option value="image/png">png</option>
+    <option value="image/webp">webp</option>
+    <option value="image/jpeg">jpeg</option>
+  </select>
+  <input
+    id="imagequality"
+    type="number"
+    min="0"
+    max="1"
+    step="0.05"
+    value="0.9"
+    style="display: none"
+  />
+  <a id="download" download>Download</a>
+</section>
+```
+
+先实现接受用户选择文件的机制，用户通过文件框选择图像文件，或者拖放图像文件到页面上，都将把该图像显示出来，也作为后续图像转换的来源：
+
+```javascript
+fileinput.addEventListener("change", e => {
+  const file = e.target.files[0];
+  updatePreview(file);
+});
+
+document.addEventListener("dragover", e => e.preventDefault());
+document.addEventListener("drop", e => {
+  e.preventDefault();
+  const file = e.dataTransfer.files?.[0];
+  updatePreview(file);
+});
+
+const updatePreview = file => {
+  if (!file) return;
+
+  preview.src = URL.createObjectURL(file);
+  action.style.display = "block";
+};
+```
+
+然后，根据用户所选择的转换格式不同，更新下载链接：
+
+```javascript
+const updateDownload = async () => {
+  const canvas = new OffscreenCanvas(
+    preview.naturalWidth,
+    preview.naturalHeight
+  );
+  const ctx = canvas.getContext("2d");
+  ctx.drawImage(preview, 0, 0);
+  try {
+    const blob = await canvas.convertToBlob({
+      type: imagetype.value,
+      quality: imagequality.valueAsNumber,
+    });
+    download.href = URL.createObjectURL(blob);
+  } catch (err) {
+    download.removeAttribute("href");
+  }
+};
+imagetype.addEventListener("change", updateDownload);
+imagequality.addEventListener("change", updateDownload);
+updateDownload();
+```
+
+通过使用`OffscreenCanvas.convertToBlob({type, quality})`，我们得到了转化后的 Blob 对象，对其创建 Object URL 后赋到下载链接上，便可用于下载。

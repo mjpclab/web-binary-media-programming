@@ -13,13 +13,10 @@ document.addEventListener("drop", e => {
 });
 
 const updatePreview = file => {
-  if (!file) {
-    action.style.display = "none";
-    return;
-  }
+  if (!file) return;
 
-  action.style.display = "block";
   preview.src = URL.createObjectURL(file);
+  action.style.display = "block";
 };
 
 // update download

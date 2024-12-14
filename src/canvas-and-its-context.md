@@ -53,7 +53,7 @@ context.drawImage(image, dx, dy, dw, wh);
 context.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
 ```
 
-其中`image`为图像来源，可以是任意类型的 Canvas、`HTMLImageElement`（`<img>`标签实例）、`HTMLVideoElement`（`<video>`标签实例）或[`ImageBitmap`](image-bitmap.md)。例如，将源图像左上角四分之一区域绘制到画布右下角：
+其中`image`为图像来源，可以是`HTMLCanvasElement`（`<canvas>`标签实例）、`OffscreenCanvas`、`HTMLImageElement`（`<img>`标签实例）、`HTMLVideoElement`（`<video>`标签实例）或[`ImageBitmap`](image-bitmap.md)。例如，将源图像左上角四分之一区域绘制到画布右下角：
 
 ```javascript
 const img = document.querySelector("img");
@@ -80,7 +80,7 @@ context.drawImage(
 
 ## HTMLCanvasElement 和二进制操作有关的方法
 
-注意：如果 Canvas 上绘制了来自第三方域的图像，而没有配置跨域授权，一些转化方法会执行失败。例如，通过`context.drawImage`从`src`指向第三方域的`<img>`绘制图像到 Canvas 上，那么`canvas.toDataURL()`或`canvas.toBlob()`会失败并抛出错误：Tainted canvases may not be exported。
+注意：如果 Canvas 上绘制了来自第三方域的图像，而没有配置跨域授权，一些转化方法会执行失败。例如，调用`context.drawImage`从`src`指向第三方域的`<img>`绘制图像到 Canvas 上，那么`canvas.toDataURL()`或`canvas.toBlob()`会失败并抛出错误：Tainted canvases may not be exported。
 
 ### `toDataURL()`转化图像为 Data URL
 
@@ -168,4 +168,14 @@ addEventListener("message", ({ data: { canvas } }) => {
 
 ### `convertToBlob()`转化为 Blob
 
-### `transferToImageBitmap()`导出 ImageBitmap
+`convertToBlob()`将 OffscreenCanvas 的图像转化成 Blob 导出，返回`Promise<Blob>`。语法：
+
+```javascript
+convertToBlob([options]);
+```
+
+可选的`options`对象可以指定导出格式`type`和有损压缩的质量`quality`（`0`~`1`之间）。
+
+### `transferToImageBitmap()`转出到 ImageBitmap
+
+`transferToImageBitmap()`将当前 OffscreenCanvas 图像转出到 ImageBitmap 对象，然后创建新的空白画布用于后续绘图。

@@ -4,6 +4,8 @@
 
 ## 创建 ImageBitmap
 
+### 通过全局函数`createImageBitmap()`创建
+
 通过全局函数`createImageBitmap()`产生`Promise<ImageBitmap>` 实例，语法：
 
 ```javascript
@@ -25,7 +27,26 @@ createImageBitmap(image, sx, sy, sw, sh, options);
 
 之后可提供 4 个参数，以从源图像裁切，分别是裁切起始点的 x、y 坐标和宽高（可以为负数，表示反方向框选）。
 
-`options`对象上可以设置额外的选项。如要对图像进行缩放，`resizeWidth`设置输出图像的宽度，`resizeHeight`设置输出图像的高度，`resizeQuality`设置缩放质量（`pixelated`、`low`、`medium`或`high`）；`imageOrientation`可根据原始图像的 EXIF 信息调整翻转，可设置为`from-image`、`flipY`或`none`。
+`options`对象上可以设置额外的选项。如要对图像进行缩放，`resizeWidth`设置最终图像的宽度，`resizeHeight`设置最终图像的高度，`resizeQuality`设置缩放质量（`pixelated`、`low`、`medium`或`high`）；`imageOrientation`可根据原始图像的 EXIF 信息调整翻转，可设置为`from-image`、`flipY`或`none`。
+
+### 通过`OffscreenCanvas.transferToImageBitmap()`创建
+
+可以通过`OffscreenCanvas`实例的`transferToImageBitmap()`方法快速创建 ImageBitmap。
+
+```javascript
+// 创建OffscreenCanvas并导出ImageBitmap
+const osCanvas = new OffscreenCanvas(100, 100);
+const osContext = osCanvas.getContext("2d");
+osContext.strokeRect(10, 10, 80, 80);
+const bitmap = osCanvas.transferToImageBitmap();
+
+// 将ImageBitmap绘制到另一HTMLCanvasElement
+const canvas = document.createElement("canvas");
+const context = canvas.getContext("2d");
+context.drawImage(bitmap, 0, 0);
+document.body.append(canvas);
+bitmap.close();
+```
 
 ## 属性和方法
 

@@ -18,5 +18,6 @@
 - [MediaDevices - MDN](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices)
 - [MediaDeviceInfo - MDN](https://developer.mozilla.org/en-US/docs/Web/API/MediaDeviceInfo)
 - [InputDeviceInfo - MDN](https://developer.mozilla.org/en-US/docs/Web/API/InputDeviceInfo)
+- [MediaCapabilities - MDN](https://developer.mozilla.org/en-US/docs/Web/API/MediaCapabilities)
 - [The Modern JavaScript Tutorial](https://javascript.info/)
 - [ArrayBuffer - ECMAScript 6 入门，阮一峰](https://es6.ruanyifeng.com/#docs/arraybuffer)

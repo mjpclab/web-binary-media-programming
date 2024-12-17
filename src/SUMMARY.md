@@ -30,6 +30,7 @@
   - [MediaDevices]()
     - [getUserMedia()]()
     - [getDisplayMedia()]()
+  - [MediaCapabilities]()
   - [深入 MediaStream 与 MediaStreamTrack](media-stream-and-track-in-depth.md)
   - [MediaRecorder](media-recorder.md)
 - [参考资料](reference.md)

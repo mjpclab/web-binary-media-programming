@@ -1,0 +1,13 @@
+body {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 1em;
+}
+
+video {
+  height: 80vh;
+  aspect-ratio: 9/16;
+  background: #000;
+  transform: scaleX(-1);
+}

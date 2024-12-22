@@ -19,5 +19,7 @@
 - [MediaDeviceInfo - MDN](https://developer.mozilla.org/en-US/docs/Web/API/MediaDeviceInfo)
 - [InputDeviceInfo - MDN](https://developer.mozilla.org/en-US/docs/Web/API/InputDeviceInfo)
 - [MediaTrackConstraints - MDN](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints)
+- [getUserMedia() - MDN](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia)
+- [getSupportedConstraints() - MDN](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getSupportedConstraints)
 - [The Modern JavaScript Tutorial](https://javascript.info/)
 - [ArrayBuffer - ECMAScript 6 入门，阮一峰](https://es6.ruanyifeng.com/#docs/arraybuffer)

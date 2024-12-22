@@ -29,7 +29,7 @@
   - [MediaDevices](media-devices.md)
     - [enumerateDevices()方法](enumerate-devices.md)
     - [getUserMedia()方法](get-user-media.md)
-    - [getDisplayMedia()方法]()
+    - [getDisplayMedia()方法](get-display-media.md)
     - [getSupportedConstraints()方法]()
   - [深入 MediaStream 与 MediaStreamTrack](media-stream-and-track-in-depth.md)
   - [MediaRecorder](media-recorder.md)

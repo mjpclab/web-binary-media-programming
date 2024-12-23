@@ -202,3 +202,16 @@ devices[3].getCapabilities(); /*
 }
 */
 ```
+
+## 订阅设备列表变更通知
+
+假设有一个供用户选择要使用的媒体设备的列表，自然很希望当用户在插拔这些设备时，列表可以自动更新。比较高效的做法自然是期望在系统设备在发生变化时，能获得通知。
+
+`devicechange`事件正是我们所需要的通知事件，该事件的触发代表着设备列表的变化，可能是增加了新设备，也可能是移除了现有设备。
+
+```javascript
+let devices = await navigator.mediaDevices.enumerateDevices();
+navigator.mediaDevices.addEventListener("devicechange", async () => {
+  devices = await navigator.mediaDevices.enumerateDevices();
+});
+```

@@ -2,7 +2,7 @@
 
 `MediaStream`表示一个可以播放的媒体流，其底层数据对开发者不可见，即是一个黑盒。可以认为`MediaStream`是一个存放媒体的容器，真正的媒体以媒体轨道（`MediaStreamTrack`）的形式储存在`MediaStream`中。
 
-## 抓取 Canvas 视频流
+## 从 Canvas 抓取视频流
 
 我们已经在 Canvas 的章节中提到了 Canvas 的`captureStream()`方法可以获得一个`MediaStream`实例。现在，让我们尝试在 Canvas 上绘制动画，然后从中提取一个`MediaStream`（其中包含一个`MediaStreamTrack`视频轨），最后使用`<video>`元素来播放该媒体流。
 

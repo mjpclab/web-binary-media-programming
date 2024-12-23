@@ -32,5 +32,7 @@
     - [getDisplayMedia()方法](get-display-media.md)
     - [getSupportedConstraints()方法](get-supported-constraints.md)
   - [深入 MediaStream 与 MediaStreamTrack](media-stream-and-track-in-depth.md)
+    - [MediaStreamTrack](media-stream-track-in-depth.md)
+    - [MediaStream](media-stream-in-depth.md)
   - [MediaRecorder](media-recorder.md)
 - [参考资料](reference.md)

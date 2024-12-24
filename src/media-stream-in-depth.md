@@ -6,7 +6,7 @@
 
 在之前的章节中，我们已经了解了获取`MediaStream`中 Track 的方法：`getTracks()`、`getAudioTracks()`和`getVideoTracks()`。
 
-如果已知 MediaStreamTrack ID，可以调用`MediaStream.getTrackById(id)`来获取轨道：
+如果已知 MediaStreamTrack ID，可以调用`mediaStream.getTrackById(id)`来获取轨道：
 
 ```javascript
 // const stream = ...
@@ -16,7 +16,7 @@ const track = stream.getTrackById(trackId);
 
 ## MediaStream ID
 
-MediaStream ID 是一个 GUID 标识，它唯一地标识了一个媒体流，除了可以用于区分本地的多个流，也可用于标识远程流（例如在视频会议中的远端用户的音视频流）。
+MediaStream ID 是浏览器生成的 GUID 标识，它唯一地标识了一个媒体流，除了可以用于区分本地的多个流，也可用于标识远程流（例如在视频会议中的远端用户的音视频流）。
 
 只读属性`id`用于获取 MediaStream ID，返回以字符串形式表示的 GUID。
 
@@ -52,7 +52,7 @@ stream.active; // false
 
 ## 克隆 MediaStream
 
-`MediaStream.clone()`方法会克隆`MediaStream`及其包含的`MediaStreamTrack`，产生新的 ID：
+`mediaStream.clone()`方法会克隆`MediaStream`及其包含的`MediaStreamTrack`，产生新的 ID：
 
 ```javascript
 const stream = await navigator.mediaDevices.getUserMedia({
@@ -90,7 +90,7 @@ stream.active; // false
 stream.getTracks(); // []
 ```
 
-使用`new MediaStream(stream)`的方式创建的实例会和原实例共享`MediaStreamTrack`。新创建的 Stream 会有不同的 ID，但和`MediaStream.clone()`方法不同，它会和原始 Stream 共享轨道对象：
+使用`new MediaStream(stream)`的方式创建的实例会和原实例共享`MediaStreamTrack`。新创建的 Stream 会有不同的 ID，但和`mediaStream.clone()`方法不同，它会和原始 Stream 共享轨道对象：
 
 ```javascript
 const stream = await navigator.mediaDevices.getUserMedia({
@@ -104,7 +104,8 @@ stream.getTracks().map(track => track.id);
 // ['e1b113d4-28d5-497d-a1a6-6ac4441c204d', 'c3eece8c-d119-42bb-8f7c-d3ed561405d3']
 
 const shared = new MediaStream(stream);
-shared.id; // '8d39c304-f14a-4204-8ee1-969b8e3468a8'
+shared.id;
+// '8d39c304-f14a-4204-8ee1-969b8e3468a8'
 shared.getTracks().map(track => track.id);
 // ['e1b113d4-28d5-497d-a1a6-6ac4441c204d', 'c3eece8c-d119-42bb-8f7c-d3ed561405d3']
 
@@ -128,7 +129,7 @@ audioOnlyStream.getTracks().every((track, i) => track === audioTracks[i]);
 
 ## 添加轨道（MediaStreamTrack）
 
-`MediaStream.addTrack(track)`可以将现有的轨道添加到 Stream 中，如轨道已经在 Stream 中，则不会产生效果。
+`mediaStream.addTrack(track)`可以将现有的轨道添加到 Stream 中，如轨道已经在 Stream 中，则不会产生效果。
 
 ```javascript
 const stream = await navigator.mediaDevices.getUserMedia({
@@ -166,7 +167,7 @@ stream.active; // true
 
 ## 移除轨道（MediaStreamTrack）
 
-`MediaStream.removeTrack(track)`可以从现有 Stream 中移除一个轨道。当剩余的轨道都已终止时，Stream 的`active`属性值会变成`false`。
+`mediaStream.removeTrack(track)`可以从现有 Stream 中移除一个轨道。当剩余的轨道都已终止时，Stream 的`active`属性值会变成`false`。
 
 ```javascript
 const stream = await navigator.mediaDevices.getUserMedia({

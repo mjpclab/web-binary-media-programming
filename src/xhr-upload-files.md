@@ -2,7 +2,7 @@
 
 ## 表单模式上传
 
-当我们把 FormData 传递给`XMLHttpRequest.send()`方法时，FormData 中的数据会被序列化到请求体（Request Body）中，其编码方式为`multipart/form-data`，效果与通过表单上传文件相同。
+当我们把 FormData 传递给`xmlHttpRequest.send()`方法时，FormData 中的数据会被序列化到请求体（Request Body）中，其编码方式为`multipart/form-data`，效果与通过表单上传文件相同。
 
 我们先启动[GHFS](https://github.com/mjpclab/go-http-file-server)服务器并启用上传功能，也可以使用其它支持`multipart/form-data`文件上传的 Web 服务器。
 

@@ -45,7 +45,7 @@ const context = canvas.getContext("2d");
 
 ## 将已有的图像资源绘制到画布上
 
-`CanvasRenderingContext2D.drawImage()`方法可以将 Web 页面中现有的图像资源绘制到画布上，语法：
+`canvasRenderingContext2D.drawImage()`方法可以将 Web 页面中现有的图像资源绘制到画布上，语法：
 
 ```javascript
 context.drawImage(image, dx, dy);
@@ -133,7 +133,7 @@ canvas.toDataURL(
 canvas.captureStream([frameRate]);
 ```
 
-可选的`frameRate`用于指定视频采集帧率。如不提供该值，则只在每次 Canvas 发生变化时采集一帧；如设置为`0`，则不会自动采集帧信息，而是需要手动调用`CanvasCaptureMediaStreamTrack.requestFrame()`触发采集动作。
+可选的`frameRate`用于指定视频采集帧率。如不提供该值，则只在每次 Canvas 发生变化时采集一帧；如设置为`0`，则不会自动采集帧信息，而是需要手动调用`canvasCaptureMediaStreamTrack.requestFrame()`触发采集动作。
 
 ```javascript
 const stream = canvas.captureStream();
@@ -256,4 +256,4 @@ imagequality.addEventListener("change", updateDownload);
 updateDownload();
 ```
 
-通过使用`OffscreenCanvas.convertToBlob({type, quality})`，我们得到了转化后的 Blob 对象，对其创建 Object URL 后赋到下载链接上，便可用于下载。
+通过使用`offscreenCanvas.convertToBlob({type, quality})`，我们得到了转化后的 Blob 对象，对其创建 Object URL 后赋到下载链接上，便可用于下载。

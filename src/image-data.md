@@ -33,7 +33,7 @@ context.createImageData(imagedata);
 
 其中`imagedata`为已有的 ImageData 对象，仅会从中提取宽高信息而不会复制其中的像素数据。
 
-### 通过 `Context.getImageData()`方法创建
+### 通过 `context.getImageData()`方法创建
 
 从已绘制图像的`CanvasRenderingContext2D`上提取 ImageData，语法：
 
@@ -44,7 +44,7 @@ context.getImageData(sx, sy, sw, sh, settings);
 
 ## 其他 ImageData 操作
 
-除了`Context.getImageData()`，最常用的就是对应的`Context.putImageData()`方法了，它可以把 ImageData 中的像素绘制到 Canvas 上。
+除了`context.getImageData()`，最常用的就是对应的`Context.putImageData()`方法了，它可以把 ImageData 中的像素绘制到 Canvas 上。
 
 语法：
 

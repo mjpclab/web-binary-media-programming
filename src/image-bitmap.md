@@ -1,6 +1,6 @@
 # ImageBitmap
 
-`ImageBitmap`代表图像的位图信息，用于在 canvas 上低延迟地绘制其图像（例如`Context.drawImage(imageBitmap, ...)`）。
+`ImageBitmap`代表图像的位图信息，用于在 canvas 上低延迟地绘制其图像（例如`context.drawImage(imageBitmap, ...)`）。
 
 ## 创建 ImageBitmap
 

@@ -171,7 +171,7 @@ devices; /*
 
 `InputDeviceInfo`继承自`MediaDeviceInfo`，针对数据输入型设备作了扩展。输入型设备即`MediaDeviceInfo.kind`为`audioinput`和`videoinput`的设备。
 
-`InputDeviceInfo.getCapabilities()`返回设备所能支持的工作指标范围，为`MediaTrackCapabilities`接口，例如针对上例中返回的摄像头设备：
+`inputDeviceInfo.getCapabilities()`返回设备所能支持的工作指标范围，为`MediaTrackCapabilities`接口，例如针对上例中返回的摄像头设备：
 
 ```javascript
 devices[3].getCapabilities(); /*

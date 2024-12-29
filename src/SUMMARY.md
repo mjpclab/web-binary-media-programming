@@ -6,6 +6,7 @@
   - [类型化数组](typed-array.md)
   - [Uint8ClampedArray](uint8-clamped-array.md)
   - [DataView](data-view.md)
+  - [SharedArrayBuffer](shared-array-buffer.md)
 - [Blob 和它的朋友们](blob-and-its-friends.md)
   - [Blob](blob.md)
   - [File](file.md)

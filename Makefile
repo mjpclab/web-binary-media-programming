@@ -9,4 +9,4 @@ dev:
 init:
 	cargo install mdbook mdbook-chapter-zero
 example:
-	ghfs -l 8080 -r src/example --global-header 'cache-control: public, max-age=0'
+	ghfs -l 8080 -r src/example --global-header 'cache-control: public, max-age=0' --header ':/shared-array-buffer:Cross-Origin-Opener-Policy:same-origin' --header ':/shared-array-buffer:Cross-Origin-Embedder-Policy:require-corp'

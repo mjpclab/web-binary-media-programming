@@ -3,6 +3,7 @@
 - [ArrayBuffer - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
 - [Typed arrays - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Typed_arrays)
 - [DataView - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView)
+- [SharedArrayBuffer - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer)
 - [Blob - MDN](https://developer.mozilla.org/en-US/docs/Web/API/Blob)
 - [File - MDN](https://developer.mozilla.org/en-US/docs/Web/API/File)
 - [FileList - MDN](https://developer.mozilla.org/en-US/docs/Web/API/FileList)

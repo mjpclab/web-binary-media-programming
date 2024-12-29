@@ -10,7 +10,7 @@ ArrayBuffer 实例拥有一个初始长度，一个可选的最大长度。
 
 ```javascript
 const fixed = new ArrayBuffer(4);
-const grownable = new ArrayBuffer(4, { maxByteLength: 16 });
+const flex = new ArrayBuffer(4, { maxByteLength: 16 });
 ```
 
 ## 获取长度信息
@@ -21,25 +21,25 @@ const grownable = new ArrayBuffer(4, { maxByteLength: 16 });
 fixed.byteLength; // 4
 fixed.maxByteLength; // 4
 
-grownable.byteLength; // 4
-grownable.maxByteLength; // 16
+flex.byteLength; // 4
+flex.maxByteLength; // 16
 ```
 
 ## 更改长度
 
-对于指定了`maxByteLength`的 ArrayBuffer 实例，可以在`maxByteLength`的范围内更改长度，可以扩展也可以收缩，被收缩部分的字节变得不可见，被扩展的字节初始化为`0`。可以通过实例的`resizable`属性检查是否可更改长度。
+对于指定了`maxByteLength`的 ArrayBuffer 实例，可以在`maxByteLength`的范围内更改长度，可以扩展也可以收缩，被收缩部分的字节变得不可见，被扩展的字节初始化为`0`。可以通过实例的`resizable`属性检查是否可更改长度，通过`resize(newLength)`更改长度。
 
 ```javascript
-grownable.resizable; // true
-grownable.resize(2);
-grownable.byteLength; // 2
-grownable.maxByteLength; // 16
+flex.resizable; // true
+flex.resize(12);
+flex.byteLength; // 12
+flex.maxByteLength; // 16
 
-grownable.resize(12);
-grownable.byteLength; // 12
-grownable.maxByteLength; // 16
+flex.resize(2);
+flex.byteLength; // 2
+flex.maxByteLength; // 16
 
-grownable.resize(20);
+flex.resize(20);
 // throws RangeError
 // ArrayBuffer.prototype.resize: Invalid length parameter
 

@@ -7,7 +7,7 @@
 我们先启动[GHFS](https://github.com/mjpclab/go-http-file-server)服务器并启用上传功能，也可以使用其它支持`multipart/form-data`文件上传的 Web 服务器。
 
 ```shell
-ghfs -l 8080 -r /tmp/ --upload / --cors /
+ghfs -l 8081 -r /tmp/ --upload / --cors /
 ```
 
 ### 以 URL 的形式使用 Fetch
@@ -19,7 +19,7 @@ const data = new FormData();
 data.append("file", new Blob(["file 1 content"]), "file1.txt");
 data.append("file", new Blob(["file 2 content"]), "file2.txt");
 
-const response = await fetch("http://localhost:8080/?upload", {
+const response = await fetch("http://localhost:8081/?upload", {
   method: "POST",
   body: data,
 });
@@ -37,7 +37,7 @@ const data = new FormData();
 data.append("file", new Blob(["file 1 content"]), "file1.txt");
 data.append("file", new Blob(["file 2 content"]), "file2.txt");
 
-const request = new Request("http://localhost:8080/?upload", {
+const request = new Request("http://localhost:8081/?upload", {
   method: "POST",
   body: data,
 });
@@ -62,7 +62,7 @@ const data = new FormData();
 data.append("file", new Blob(["file 1 content"]), "file1.txt");
 data.append("file", new Blob(["file 2 content"]), "file2.txt");
 
-const request = new Request("http://localhost:8080/?upload", {
+const request = new Request("http://localhost:8081/?upload", {
   method: "POST",
   body: data,
 });

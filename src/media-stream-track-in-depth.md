@@ -2,7 +2,7 @@
 
 `MediaStreamTrack`表示实际的媒体轨道，例如音频轨道或视频轨道。`MediaStreamTrack`无法直接播放，而是需要存在于`MediaStream`中。
 
-让我们观察一些 MediaStreamTrack 上的一些属性：
+让我们观察一下 MediaStreamTrack 上的一些属性：
 
 ```javascript
 const stream = await navigator.mediaDevices.getUserMedia({
@@ -56,7 +56,7 @@ MediaStreamTrack ID 是浏览器生成的 GUID 标识，它唯一地标识了一
 
 可以通过只读属性`readyState`获取轨道就绪状态，`live`表示当前已连接到有效的输入源，并提供实时数据；`ended`表示轨道已终止，不会再有更多的数据到达。
 
-在`live`状态的`MediaStreamTrack`上调用`.stop()`方法会导致其状态变为`ended`。
+在`live`状态的`MediaStreamTrack`上调用`stop()`方法会导致其状态变为`ended`。
 
 ```javascript
 // 创建一个video元素

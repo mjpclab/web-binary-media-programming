@@ -44,11 +44,11 @@ camera.getCapabilities(); /*
 */
 ```
 
-从上例可以看出，当前系统的摄像头支持 4K 分辨率采用，最大帧率为 30。
+从上例可以看出，当前系统的摄像头支持 2K 分辨率采样，最大帧率为 30。
 
 ## 检查浏览器支持的 Constraints
 
-`mediaDevices.getSupportedConstraints()`方法返回浏览器支持的约束项。调用`getUserMedia()`或`getDisplayMedia()`时传入不支持的约束项，浏览器会静默忽略。可以通过调用`getSupportedConstraints()`方法返回的信息来了解支持情况，所有类型（音频和视频）的媒体约束都会混合在一起。
+`mediaDevices.getSupportedConstraints()`方法返回浏览器支持的约束项。调用`getUserMedia()`或`getDisplayMedia()`时传入不支持的约束项，浏览器会静默忽略。`getSupportedConstraints()`方法返回的信息提供了约束的支持情况，所有类型（音频和视频）的媒体约束都会混合在一起。
 
 ```javascript
 navigator.mediaDevices.getSupportedConstraints(); /*
@@ -151,13 +151,13 @@ audioTrack.getCapabilities(); /*
 const stream = await navigator.mediaDevices.getUserMedia({
   video: {
     width: 640,
-    height: 848,
+    height: 360,
   },
 });
 const videoTrack = stream.getVideoTracks()[0];
 videoTrack.getConstraints(); /*
 {
-    "height": 848,
+    "height": 360,
     "width": 640
 }
 */
@@ -182,19 +182,19 @@ videoTrack.getConstraints(); /*
 const stream = await navigator.mediaDevices.getUserMedia({
   video: {
     width: 640,
-    height: 848,
+    height: 360,
   },
 });
 const videoTrack = stream.getVideoTracks()[0];
 videoTrack.getConstraints(); /*
 {
-    "height": 848,
+    "height": 360,
     "width": 640
 }
 */
 videoTrack.getSettings(); /*
 {
-    "aspectRatio": 0.7547169811320755,
+    "aspectRatio": 1.7777777777777777,
     "brightness": 128,
     "colorTemperature": 4000,
     "contrast": 128,
@@ -203,8 +203,8 @@ videoTrack.getSettings(); /*
     "focusMode": "continuous",
     "frameRate": 30,
     "groupId": "6a784b6fd71f7b51d7388cb6db75e98ec8f18a5d0b486a73eefa0841eb834235",
-    "height": 848,
-    "resizeMode": "crop-and-scale",
+    "height": 360,
+    "resizeMode": "none",
     "saturation": 128,
     "sharpness": 128,
     "whiteBalanceMode": "continuous",

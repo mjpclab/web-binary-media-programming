@@ -9,7 +9,9 @@ document.addEventListener("dragover", e => e.preventDefault());
 document.addEventListener("drop", e => {
   e.preventDefault();
   const file = e.dataTransfer.files?.[0];
-  updatePreview(file);
+  if(file.type.startsWith('image/')) {
+    updatePreview(file);
+  }
 });
 
 const updatePreview = file => {

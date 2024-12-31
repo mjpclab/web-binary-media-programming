@@ -6,7 +6,7 @@
 
 使用`URL.createObjectURL(blob)`可以得到一个内部指向 Blob 数据的、以字符串形式表示的特殊 URL，通常以`blob:`开头。
 
-Object URL 在当前浏览器程序的生命周期中有效，它可以在单独的标签页中被访问，也可以赋值到 HTML 元素的 URL 属性，例如`<img>`的`src`属性。
+Object URL 在当前页面的生命周期中有效，它可以在单独的标签页中被访问，也可以赋值到 HTML 元素的 URL 属性，例如`<img>`的`src`属性。
 
 当 Object URL 不再使用时，可以调用`URL.revokeObjectURL(objectURL)`来释放资源。
 

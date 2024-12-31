@@ -11,12 +11,10 @@
 页面包含一个用于预览的 video 元素，两个分别用于启动和停止录制的操作按钮，以及用于包含录制历史文件的列表：
 
 ```html
-<body>
-  <video muted></video>
-  <button disabled>Start</button>
-  <button disabled>Stop</button>
-  <ul></ul>
-</body>
+<video muted></video>
+<button disabled>Start</button>
+<button disabled>Stop</button>
+<ul></ul>
 ```
 
 ```javascript
@@ -107,13 +105,13 @@ new MediaRecorder(stream, options);
 
 `mediaRecorder.state`属性表示当前录制状态：
 
-- `inactive`：非活动状态，尚未开始录制或在录制过程中调用`mediaRecorder.stop()`停止录制后进入该状态
+- `inactive`：非活动状态，尚未开始录制，或在录制过程中调用`mediaRecorder.stop()`停止录制后进入该状态
 - `recording`：正在录制并捕获数据，通过调用`mediaRecorder.start()`进入该状态
 - `paused`：当前处于录制暂停状态，在录制过程中调用`mediaRecorder.pause()`进入该状态
 
 ### 录制流程控制
 
-在创建`MediaRecorder`实例后，一般按如下流程控制
+在创建`MediaRecorder`实例后，一般按如下流程运行：
 
 1. 订阅`dataavailable`事件，每当有新数据分块到来时会触发，需要收集所有的分块才能合成最终的视频。
 2. 订阅`stop`事件，在录制停止后，最后一个分块的`dataavailable`事件处理程序完成后触发。此时可以将收集到的所有分块合成一个大的单一的 Blob 文件。
@@ -145,29 +143,24 @@ document.body.addEventListener("dblclick", () => {
 然后监听状态变化事件，并打印当前的`state`：
 
 ```javascript
-console.log("init", recorder.state);
-recorder.addEventListener("start", function () {
-  console.log("start", this.state);
-});
-recorder.addEventListener("stop", function () {
-  console.log("stop", this.state);
-});
-recorder.addEventListener("pause", function () {
-  console.log("pause", this.state);
-});
-recorder.addEventListener("resume", function () {
-  console.log("resume", this.state);
-});
+console.log("state:", recorder.state);
+function onEventFired(e) {
+  console.log(`event: ${e.type}, state: ${this.state}`);
+}
+recorder.addEventListener("start", onEventFired);
+recorder.addEventListener("stop", onEventFired);
+recorder.addEventListener("pause", onEventFired);
+recorder.addEventListener("resume", onEventFired);
 ```
 
 如果我们打开页面，按录制 → 暂停 → 恢复 → 停止的步骤操作，可以在控制台中看到如下日志：
 
 ```
-init inactive
-start recording
-pause paused
-resume recording
-stop inactive
+state: inactive
+event: start, state: recording
+event: pause, state: paused
+event: resume, state: recording
+event: stop, state: inactive
 ```
 
 ### 关于数据分块

@@ -5,7 +5,8 @@
 `getDisplayMedia()`用法与`getUserMedia()`相似，在使用时可以传入可选的选项对象用于媒体轨道的约束：
 
 ```javascript
-getDisplayMedia([options]);
+mediaDevices.getDisplayMedia();
+mediaDevices.getDisplayMedia(options);
 ```
 
 调用`getDisplayMedia()`后，浏览器将弹出界面询问用户要分享的内容，例如整个屏幕、指定的应用程序窗口或浏览器 Tab 页。

@@ -28,7 +28,7 @@ JavaScript 中的普通数组是非类型化的，即数组中可以存放任意
 
 ## 作为视图的类型化数组
 
-类型化数组是[ArrayBuffer](array-buffer.md)的上层视图，通过类型化数组可以查看和修改其底层 ArrayBuffer 的字节数据。
+类型化数组是 ArrayBuffer 的上层视图，通过类型化数组可以查看和修改其底层 ArrayBuffer 的字节数据。
 
 同一个 ArrayBuffer，使用不同的类型化数组去解读或修改，会得到不同的结果。以下示例展示了`Uint8Array`和`Uint16Array`对同一个 ArrayBuffer 的不同解读，并假设数值为 16 进制：
 
@@ -56,7 +56,7 @@ new TypedArray(buffer, byteOffset);
 new TypedArray(buffer, byteOffset, length);
 ```
 
-当通过已有的 ArrayBuffer 创建类型化数组时，构造函数不再单独创建新的 ArrayBuffer，而是将传入的 ArrayBuffer 作为底层缓冲区使用。可以通过一个 ArrayBuffer 构造多个不同的类型化数组，他们将共享相同的底层数组。
+当通过已有的 ArrayBuffer 创建类型化数组时，构造函数不再单独创建新的 ArrayBuffer，而是将传入的 ArrayBuffer 作为底层缓冲区使用。可以通过一个 ArrayBuffer 构造多个不同的类型化数组，它们将共享相同的底层数组。
 
 还可以额外指定要创建的数组所使用的 ArrayBuffer 的起始位置（偏移量）和长度（元素个数），这两个参数都是可选的。
 
@@ -95,7 +95,7 @@ arrI8; // [0, 1, 2, 3, -1, 0]
 ```javascript
 const arrU16 = new Uint16Array([65535, 65536]);
 const arrI8 = new Int8Array(arrU16);
-arrI8; // [-1, 0 ]
+arrI8; // [-1, 0]
 ```
 
 ### 通过指定数组长度创建
@@ -265,6 +265,8 @@ typedArray.subarray(begin, end);
 
 从`typedArray`取子数组，两个参数分别是开始位置和结束位置。新数组和原数组共享相同的 ArrayBuffer，但各自可以有不同的`byteOffset`。
 
+两个位置参数都可以是负数，代表从数组末尾开始倒数的位置。
+
 ```javascript
 const list = new Int32Array([1, 2, 3, 4, 5, 6]);
 let subList;
@@ -283,9 +285,14 @@ subList = list.subarray(2, 5);
 subList; // [3, 4, 5]
 subList.buffer === list.buffer; // true
 subList.byteOffset; // 8
+
+subList = list.subarray(-4, -1);
+subList; // [3, 4, 5]
+subList.buffer === list.buffer; // true
+subList.byteOffset; // 8
 ```
 
-如需要产生子数组的副本，即元素组和子数组不共享同一个 ArrayBuffer，可以换用`slice`方法：
+如需要产生副本子数组，即原数组和子数组不共享同一个 ArrayBuffer，可以换用`slice`方法：
 
 ```javascript
 const list = new Int32Array([1, 2, 3, 4, 5, 6]);

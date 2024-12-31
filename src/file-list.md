@@ -4,7 +4,7 @@
 
 `length`属性表示 FileList 中 File 对象的数量。
 
-`item(index)`方法返回 FileList 中指定位置的 File 对象。访问`files.item(index)`效果与`files[i]`相同。
+`item(index)`方法返回 FileList 中指定位置的 File 对象。访问`files.item(index)`效果与`files[index]`相同。
 
 `FileList`对象出现在文件表单域和拖放 API 的 DataTransfer 对象中。
 
@@ -15,19 +15,9 @@
 HTML 页面：
 
 ```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FileList demo</title>
-  </head>
-  <body>
-    <h1>Select files or drop files</h1>
-    <input id="fileinput" type="file" multiple />
-    <pre id="names"></pre>
-  </body>
-</html>
+<h1>Select files or drop files</h1>
+<input id="fileinput" type="file" multiple />
+<pre id="names"></pre>
 ```
 
 然后写一个通用的打印函数来显示 FileList 中的文件名：

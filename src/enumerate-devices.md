@@ -41,7 +41,7 @@ devices; /*
 */
 ```
 
-看上去似乎没有太多有用的信息。实际上，如果从未在页面所在域通过`getUserMedia()`请求过音视频对应类型的轨道，那么该种类型设备就不会被枚举出来，这时处于隐私安全的考虑，我们需要至少请求过某种类型设备一次，并获得用户授权，才能枚举出该类设备：
+看上去似乎没有太多有用的信息。实际上，如果从未在页面所在源通过`getUserMedia()`请求过音视频对应类型的轨道，那么该种类型设备就不会被枚举出来，这是出于隐私安全的考虑，我们需要至少请求过某种类型设备一次，并获得用户授权，才能枚举出该类设备：
 
 ```javascript
 // 等待用户授权并resolve Promise
@@ -94,9 +94,9 @@ devices; /*
 */
 ```
 
-可以看到，`kind`属性为`audiointpu`的麦克风设备现在已经可以被枚举出来了，运行结果因系统所配置的设备不同而不同。
+可以看到，`kind`属性为`audiointput`的麦克风设备现在已经可以被枚举出来了，运行结果因系统所配置的设备不同而不同。
 
-一般而言，在枚举设备前，都会先同时请求音频和视频权限，所以上例中只请求音频设备的情况并不常见：
+一般而言，在枚举设备前，都会先同时请求音频和视频权限，上例中只请求音频设备的情况并不常见：
 
 ```javascript
 const stream = await navigator.mediaDevices.getUserMedia({
@@ -152,7 +152,7 @@ devices; /*
 
 `enumerateDevices()`方法返回的列表中的每一个元素都是一个`MediaDeviceInfo`接口。
 
-`deviceId`是其中最重要的属性，顾名思义，它用于表示设备的唯一性，而下一节要介绍的获取指定设备的媒体轨道，也是通过指定这个属性实现的。`deviceId`很特殊，虽然它能唯一地标识出某个设备，但是在不同的域下，同一设备所对应的`deviceId`也会不同，这是出于隐私安全考虑，防止根据用户指纹跨域追踪用户。即便是同一个域，如果用户主动清除了该域下浏览器保存的数据，那么下次再枚举设备时，也会得到一个全新的`deviceId`。
+`deviceId`是其中最重要的属性，顾名思义，它用于表示设备的唯一性，而下一节要介绍的获取指定设备的媒体轨道，也是通过指定这个属性实现的。`deviceId`很特殊，虽然它能唯一地标识出某个设备，但是在不同的源下，同一设备所对应的`deviceId`也会不同，这是出于隐私安全考虑，防止根据用户指纹跨源追踪用户。即便是同一个源，如果用户主动清除了该源下浏览器保存的数据，那么下次再枚举设备时，也会得到一个全新的`deviceId`。
 
 `kind`用于表示设备种类，`audioinput`代表音频输入设备，即麦克风；`videoinput`代表视频输入设备，即摄像头；而`audiooutput`为音频输出设备，例如耳机或音箱。
 
@@ -169,7 +169,7 @@ devices; /*
 
 ## InputDeviceInfo 接口
 
-`InputDeviceInfo`继承自`MediaDeviceInfo`，针对数据输入型设备作了扩展。输入型设备即`MediaDeviceInfo.kind`为`audioinput`和`videoinput`的设备。
+`InputDeviceInfo`继承自`MediaDeviceInfo`，针对数据输入型设备作了扩展。输入型设备即`mediaDeviceInfo.kind`为`audioinput`和`videoinput`的设备。
 
 `inputDeviceInfo.getCapabilities()`返回设备所能支持的工作指标范围，为`MediaTrackCapabilities`接口，例如针对上例中返回的摄像头设备：
 

@@ -44,7 +44,7 @@ context.getImageData(sx, sy, sw, sh, settings);
 
 ## 其他 ImageData 操作
 
-除了`context.getImageData()`，最常用的就是对应的`Context.putImageData()`方法了，它可以把 ImageData 中的像素绘制到 Canvas 上。
+除了`context.getImageData()`，最常用的就是对应的`context.putImageData()`方法了，它可以把 ImageData 中的像素绘制到 Canvas 上。
 
 语法：
 

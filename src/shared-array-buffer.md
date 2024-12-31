@@ -6,12 +6,14 @@
 
 ## 配置启用 SharedArrayBuffer
 
-由于安全上的要求，使用`SharedArrayBuffer`必须进行配置：
+由于安全上的要求，使用`SharedArrayBuffer`必须启用跨源隔离，配置要求为：
 
 - 页面的响应头需要设置
   - `Cross-Origin-Opener-Policy: same-origin`
   - `Cross-Origin-Embedder-Policy: require-corp`
 - 页面的域名为`localhost`或协议为`https:`
+
+通过检查全局对象的`crossOriginIsolated`属性来确定跨源隔离是否生效。
 
 ## 验证数据共享特性
 

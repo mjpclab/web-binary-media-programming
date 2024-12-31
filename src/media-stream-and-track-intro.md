@@ -1,6 +1,6 @@
-# MediaStream 与 MediaStreamTrack
+# 初识 MediaStream 与 MediaStreamTrack
 
-`MediaStream`表示一个可以播放的媒体流，其底层数据对开发者不可见，即是一个黑盒。可以认为`MediaStream`是一个存放媒体的容器，真正的媒体以媒体轨道（`MediaStreamTrack`）的形式储存在`MediaStream`中。
+`MediaStream`表示一个可以播放的媒体流，其底层数据对开发者不可见，即是一个黑盒。可以认为`MediaStream`是一个存放媒体的容器，真正的媒体以媒体轨道（`MediaStreamTrack`）的形式存在于`MediaStream`中。
 
 ## 从 Canvas 抓取视频流
 
@@ -62,7 +62,7 @@ const stream = await navigator.mediaDevices.getUserMedia({
 
 由于此操作涉及用户隐私，调用该方法有一些限制：
 
-- 当前所在页面 URL 前缀必须是`http://localhost`或`https://`，即只允许在本地调试或 HTTPS 安全环境下使用。
+- 当前所在页面域名为`localhost`或协议为`https:`，即只允许在本地调试或 HTTPS 安全环境下使用。
 - 需要用户主动授权，浏览器 UI 可能会提示用户进行授权，且无法通过脚本控制该 UI 的行为。如果用户不执行授权操作（既不允许也不拒绝），返回的 Promise 会一直处于 pending 状态。
 
 调用`getUserMedia()`时传入的参数`audio: true`代表请求包含来自麦克风的音频轨，`video: true`代表请求包含来自摄像头的视频轨。

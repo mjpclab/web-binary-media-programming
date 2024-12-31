@@ -51,17 +51,12 @@ const list = document.querySelector("ul");
     }
   });
 
-  console.log("init", recorder.state);
-  recorder.addEventListener("start", function () {
-    console.log("start", this.state);
-  });
-  recorder.addEventListener("stop", function () {
-    console.log("stop", this.state);
-  });
-  recorder.addEventListener("pause", function () {
-    console.log("pause", this.state);
-  });
-  recorder.addEventListener("resume", function () {
-    console.log("resume", this.state);
-  });
+  console.log("state:", recorder.state);
+  function onEventFired(e) {
+    console.log(`event: ${e.type}, state: ${this.state}`);
+  }
+  recorder.addEventListener("start", onEventFired);
+  recorder.addEventListener("stop", onEventFired);
+  recorder.addEventListener("pause", onEventFired);
+  recorder.addEventListener("resume", onEventFired);
 })();

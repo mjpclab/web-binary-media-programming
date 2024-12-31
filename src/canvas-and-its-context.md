@@ -22,7 +22,7 @@ canvas2.width = 100;
 canvas2.height = 100;
 ```
 
-`HTMLCanvasElement`的`width`和`height`属性用于设置画布内容的宽高，它独立于 DOM 与 CSS 的坐标系，因而通过改变 CSS 样式的宽高会缩放 Canvas，而无法改变画布中绘图区域的大小。改变`HTMLCanvasElement`的`width`和`height`属性还会导致画布内容被清空。
+`HTMLCanvasElement`的`width`和`height`属性用于设置画布内容的宽高，它独立于 DOM 与 CSS 的坐标系，因而通过改变 CSS 样式的宽高会缩放 Canvas，而无法改变画布中绘图区域可用空间的大小。改变`HTMLCanvasElement`的`width`和`height`属性还会导致画布内容被清空。
 
 而`OffscreenCanvas`只能通过脚本创建，在创建时就必须指定画布大小：
 
@@ -80,7 +80,7 @@ context.drawImage(
 
 ## HTMLCanvasElement 和二进制操作有关的方法
 
-注意：如果 Canvas 上绘制了来自第三方域的图像，而没有配置跨域授权，一些转化方法会执行失败。例如，调用`context.drawImage`从`src`指向第三方域的`<img>`绘制图像到 Canvas 上，那么`canvas.toDataURL()`或`canvas.toBlob()`会失败并抛出错误：Tainted canvases may not be exported。
+注意：如果 Canvas 上绘制了来自第三方源的图像，而没有配置跨源授权，一些转化方法会执行失败。例如，调用`context.drawImage`从`src`指向第三方源的`<img>`绘制图像到 Canvas 上，那么`canvas.toDataURL()`或`canvas.toBlob()`会失败并抛出错误：Tainted canvases may not be exported。
 
 ### `toDataURL()`转化图像为 Data URL
 
@@ -111,7 +111,7 @@ canvas.toDataURL(callback, type);
 canvas.toDataURL(callback, type, quality);
 ```
 
-与`toDataURL()`不同，`toBlob()`是一个异步回调方法，回调函数`callback`接收一个参数，其值为 Blob 类型，或者在转化过程中由于任何原因导致失败，会传入`null`。
+与`toDataURL()`不同，`toBlob()`是一个异步回调方法，回调函数`callback`接受一个参数，其值为 Blob 类型，或者在转化过程中由于任何原因导致失败，会传入`null`。
 
 ```javascript
 canvas.toDataURL(
@@ -171,7 +171,8 @@ addEventListener("message", ({ data: { canvas } }) => {
 `convertToBlob()`将 OffscreenCanvas 的图像转化成 Blob 导出，返回`Promise<Blob>`。语法：
 
 ```javascript
-convertToBlob([options]);
+canvas.convertToBlob();
+canvas.convertToBlob(options);
 ```
 
 可选的`options`对象可以指定导出格式`type`和有损压缩的质量`quality`（`0`~`1`之间）。
@@ -182,7 +183,7 @@ convertToBlob([options]);
 
 ## 示例：图像格式转换
 
-本示例接受用户选择的图片文件，然后按照用户选择的目标格式进行转换，并提供下载。其最核心的代码便是 Canvas 所提供的将图像转化为 Blob 的方法。
+本示例接受用户选择的图片文件，然后按照用户选择的目标格式进行转化，并提供下载。其最核心的代码便是 Canvas 所提供的将图像转化为 Blob 的方法。
 
 先准备一个 HTML 页面，除了提供选择文件所用的输入框，还有显示原始图像的`img`标签，以及控制转化输出选项和下载链接的容器元素，默认情况下不显示出来：
 
@@ -202,7 +203,6 @@ convertToBlob([options]);
     max="1"
     step="0.05"
     value="0.9"
-    style="display: none"
   />
   <a id="download" download>Download</a>
 </section>
@@ -220,7 +220,9 @@ document.addEventListener("dragover", e => e.preventDefault());
 document.addEventListener("drop", e => {
   e.preventDefault();
   const file = e.dataTransfer.files?.[0];
-  updatePreview(file);
+  if (file.type.startsWith("image/")) {
+    updatePreview(file);
+  }
 });
 
 const updatePreview = file => {

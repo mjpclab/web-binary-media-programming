@@ -9,7 +9,7 @@ FileReader 的总体使用方式可以总结如下：
    - `loadstart`事件表示开始读取
    - `progress`事件用于反馈当前读取进度，对于较大的数据，可以根据事件数据向用于展示进度
    - `loadend`事件表示读取结束，无论最终是成功还是失败
-   - `load`事件表示已经成功读取，可以通过`fileReader.result`获取读到的数据，不同的读取方法会得到不同的数据类型
+   - `load`事件表示已经成功读取，可以通过`fileReader.result`获取读到的数据，不同的读取方法会得到不同类型的数据
    - `error`事件表示读取过程中发生错误，也可以通过`fileReader.error`获取发生的错误
 3. 执行读取操作，等待之前订阅的事件触发
    - `readAsArrayBuffer(blob)`方法将 Blob 内容读取为 ArrayBuffer
@@ -78,14 +78,16 @@ event: loadend, ready state: 2
 const blob = new Blob([new ArrayBuffer(1024 ** 3)]);
 
 const reader = new FileReader();
-reader.addEventListener("progress", e => {
+const eventHandler = e => {
   console.log(`event: ${e.type}, progress: ${e.loaded} / ${e.total}`);
-});
+};
+reader.addEventListener("progress", eventHandler);
+reader.addEventListener("abort", eventHandler);
 
 let count = 0;
 reader.addEventListener("progress", function () {
-  if (count == 1) this.abort();
   count++;
+  if (count == 2) this.abort();
 });
 reader.readAsArrayBuffer(blob);
 ```

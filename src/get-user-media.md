@@ -5,7 +5,7 @@
 语法：
 
 ```javascript
-getUserMedia(constraints);
+mediaDevices.getUserMedia(constraints);
 ```
 
 `getUserMedia()`方法返回 Promise，如果用户拒绝授权，则会被拒绝（reject）。
@@ -18,7 +18,7 @@ getUserMedia(constraints);
 
 `constraints`是一个选项对象，可以包含属性`audio`、`video`，分别代表音频和视频轨道的约束条件，默认值为`false`。除此之外，取值还可以是`true`或`MediaTrackConstraints`对象。
 
-当取值为`true`时，浏览器通常会从系统设置或当前域设置的默认设备获取轨道。前面章节中出现的例子就属于这种用法。
+当取值为`true`时，浏览器通常会从系统设置或当前源设置的默认设备获取轨道。前面章节中出现的例子就属于这种用法。
 
 至于使用`MediaTrackConstraints`对象来表示约束，我们先来看几个例子。
 
@@ -185,7 +185,7 @@ stream.getTracks()[0].getSettings(); /*
 
 `frameRate`用于指定采样帧率，数值类型。
 
-`facingMode`指定摄像头朝向，朝向用户`user`即前置，朝向周围环境`environment`即后置。如果设备支持，也可以设置`left`或`right`限制摄像头在用户左侧或右侧。
+`facingMode`选择某种朝向的摄像头，可以是`user`朝向用户即前置，`environment`朝向周围环境即后置。如果设备支持，也可以设置`left`或`right`选择在用户左侧或右侧的摄像头。
 
 ## 示例：通过摄像头保存自拍照
 

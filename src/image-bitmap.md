@@ -109,8 +109,8 @@ const onFileUpdate = async file => {
 };
 ```
 
-首先通过`file`对象，它创建出初始的`ImageBitmap`对象，有了它就可以得知原始图片的尺寸，我们将其保存的`width`和`height`变量中。
+首先通过`file`对象，创建出初始的`ImageBitmap`对象，有了它就可以得知原始图片的尺寸，我们将其保存在`width`和`height`变量中。
 
-接着我们根据初始 ImageBitmap 对象创建新的 ImageBitmap，其相对于初始对象的裁剪起点为`width/4`和`height/4`，而裁剪长度为`width/2`和`height/2`，刚好是初始图像正中间部分，大小为原先的一半。在选项对象中，我们又通过`resizeWidth`和`resizeHeight`指定缩放后的大小为原始图像的大小。
+接着我们根据初始 ImageBitmap 对象创建新的 ImageBitmap，其相对于初始图像的裁剪起点为`width/4`和`height/4`，而裁剪宽高为`width/2`和`height/2`，刚好是初始图像正中间部分，大小为原先的一半。在选项对象中，我们又通过`resizeWidth`和`resizeHeight`指定缩放后的尺寸为原始图像的大小。
 
 为了能显示并下载裁剪后的图片，我们需要将 ImageBitmap 转换成指向 Blob 的 Object URL，而要达到此目的，又需要先把 ImageBitmap 绘制到 canvas 元素上，然后通过 HTMLCanvasElement 的方法转换成 Blob。

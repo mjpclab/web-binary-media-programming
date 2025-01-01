@@ -201,7 +201,7 @@ stream.getTracks()[0].getSettings(); /*
 
 ```html
 <body>
-  <video muted></video>
+  <video muted playsinline></video>
   <button>Download</button>
 </body>
 ```

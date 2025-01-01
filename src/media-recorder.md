@@ -11,7 +11,7 @@
 页面包含一个用于预览的 video 元素，两个分别用于启动和停止录制的操作按钮，以及用于包含录制历史文件的列表：
 
 ```html
-<video muted></video>
+<video muted playsinline></video>
 <button disabled>Start</button>
 <button disabled>Stop</button>
 <ul></ul>

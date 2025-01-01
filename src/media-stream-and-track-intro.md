@@ -11,7 +11,7 @@
 ```html
 <body>
   <canvas width="100" height="100"></canvas>
-  <video muted controls></video>
+  <video muted controls playsinline></video>
 </body>
 ```
 

@@ -1,8 +1,8 @@
 # FormData
 
-`FormData`代表 HTML 表单（Form）提交时，请求体（Request Body）中的数据。表单数据由多个字段组成，每个字段包含键（key）和值（value）。
+`FormData`代表 HTML 表单（Form）以`multipart/formdata`编码提交时，请求体（Request Body）中的数据。`FormData`数据由多个字段组成，每个字段包含键（key，可重复出现）和值（value）。
 
-在上传文件时，FormData 中会包含 Blob 类型的数据，可通过**XML HTTP Request** API 或 **fetch** API 将 FormData 实例发送到服务器端。
+要上传文件，只需在 FormData 中会包含 Blob 类型的数据，然后通过**XML HTTP Request** API 或 **Fetch** API 将 FormData 实例发送到服务器端。
 
 ## 创建 FormData 并添加数据
 
@@ -10,13 +10,14 @@
 
 ```javascript
 const data = new FormData();
+data.append("user", "unknown");
 data.append("file", new Blob(["content of file 1"]));
 data.append("file", new Blob(["content of file 2"]), "another.txt");
 ```
 
 首先通过无参的`FormData()`构造函数创建 FormData 实例。
 
-然后通过`append()`方法添加值，类型为 Blob。通过上例可知，同一个字段名可以出现多次，如服务器端逻辑实现正确，应当可以处理这种情况。如要避免一个字段名有多个值的情况，希望下次赋值能够覆盖该字段名对应的已存在的值，可以改用`set()`方法。
+然后通过`append()`方法添加值，类型为字符串或 Blob。通过上例可知，同一个字段名可以出现多次，如服务器端逻辑实现正确，应当可以处理这种情况。如要避免一个字段名有多个值的情况，希望下次赋值能够覆盖该字段名对应的已存在的值，可以改用`set()`方法。
 
 `append()`和`set()`都可以接受第 3 个可选的文件名参数。如未指定，值为 Blob 类型时默认文件名为"blob"，而值为 File 类型时默认文件名为其`name`属性值。语法如下：
 

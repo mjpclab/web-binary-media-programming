@@ -1,16 +1,14 @@
 [book]
 authors = ["MJ PC Lab"]
 language = "zh-CN"
-multilingual = false
 title = "Web二进制媒体编程"
 
 [build]
 build-dir = "dist"
 
-[preprocessor.chapter-zero]
-levels = [0]
 
 [output.html]
 git-repository-url = "https://github.com/mjpclab/web-binary-media-programming"
 print.enable = false
 playground.copyable = false
+preferred-dark-theme = "ayu"

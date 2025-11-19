@@ -1,4 +1,4 @@
-.PHONY: build dev clean init
+.PHONY: build dev clean init example
 
 build: clean
 	mdbook build
@@ -7,6 +7,6 @@ clean:
 dev:
 	mdbook serve -n [::]
 init:
-	cargo install mdbook mdbook-chapter-zero
+	cargo install mdbook
 example:
 	ghfs -l 8080 -r src/example --global-header 'cache-control: public, max-age=0' --header ':/shared-array-buffer:Cross-Origin-Opener-Policy:same-origin' --header ':/shared-array-buffer:Cross-Origin-Embedder-Policy:require-corp'
